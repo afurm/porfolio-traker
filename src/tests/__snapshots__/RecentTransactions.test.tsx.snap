@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecentTransactions Component Snapshot Test renders correctly with no transactions 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-15mclam"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-yt9ce0-MuiPaper-root"
+      style="--Paper-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 css-1ffs2s2-MuiTypography-root"
+      >
+        Recent Transactions
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1vfzsi2-MuiTypography-root"
+      >
+        No recent transactions found
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RecentTransactions Component Snapshot Test renders correctly with some transactions 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-15mclam"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-yt9ce0-MuiPaper-root"
+      style="--Paper-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 css-1ffs2s2-MuiTypography-root"
+      >
+        Recent Transactions
+      </h5>
+      <ul
+        class="MuiList-root MuiList-padding css-1u169s7-MuiList-root"
+      >
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemText-root MuiListItemText-multiline css-b8n15h-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+            >
+              Bought 1.5 Bitcoin
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-ihhumc-MuiTypography-root"
+            >
+              2024-10-05
+            </p>
+          </div>
+        </li>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemText-root MuiListItemText-multiline css-b8n15h-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+            >
+              Sold 2 Ethereum
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-ihhumc-MuiTypography-root"
+            >
+              2024-10-06
+            </p>
+          </div>
+        </li>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemText-root MuiListItemText-multiline css-b8n15h-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+            >
+              Bought 1000 Dogecoin
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-ihhumc-MuiTypography-root"
+            >
+              2024-10-07
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</DocumentFragment>
+`;

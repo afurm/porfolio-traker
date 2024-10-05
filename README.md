@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Crypto Portfolio Tracker
+
+This is a cryptocurrency portfolio tracker built with Next.js, TypeScript, and Firebase. The application allows users to add cryptocurrencies to their portfolio, visualize them using charts, and get real-time price updates.
+
+## Features
+
+- User authentication with Google using Firebase.
+- Add cryptocurrencies to your portfolio.
+- Visualize your portfolio using Recharts.
+- Real-time price data from CoinGecko API.
+- Component documentation with Storybook.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14 or later)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/crypto-portfolio-tracker.git
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install the dependencies:
+   ```bash
+   cd crypto-portfolio-tracker
+   npm install
+   ```
 
-## Learn More
+3. Create a `.env` file in the root directory and add your Firebase configuration:
+   ```env
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+### Running the App
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Development mode:
+  ```bash
+  npm run dev
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Build for production:
+  ```bash
+  npm run build
+  ```
 
-## Deploy on Vercel
+- Start the production server:
+  ```bash
+  npm run start
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Running Storybook
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Start Storybook:
+  ```bash
+  npm run storybook
+  ```
+
+- Build Storybook:
+  ```bash
+  npm run build-storybook
+  ```
+
+## Folder Structure
+
+- `src/api/` - API service to interact with CoinGecko.
+- `src/components/` - Reusable components like `AddCryptoForm` and `PortfolioChart`.
+- `src/context/` - Authentication context for managing user state.
+- `src/firebase/` - Firebase configuration.
+- `src/hooks/` - Custom React hooks.
+- `src/pages/` - Application pages (`index.tsx`, `dashboard.tsx`, etc.).
+- `src/styles/` - Global and component-specific styles.
+- `src/utils/` - Utility functions and constants.
+- `.storybook/` - Storybook configuration files.
+
+## Technologies Used
+
+- **Next.js** - Framework for server-rendered React applications.
+- **TypeScript** - Strongly typed JavaScript.
+- **Firebase** - Backend for authentication and data storage.
+- **Recharts** - Charting library for visualizing the portfolio.
+- **Storybook** - Tool for UI component development and documentation.
+
+## License
+
+This project is licensed under the MIT License.

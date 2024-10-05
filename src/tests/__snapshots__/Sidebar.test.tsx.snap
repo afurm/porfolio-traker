@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar Component Snapshot Test renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1kfzhxo"
+  >
+    <div
+      class="MuiBox-root css-1yjvs5a"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 css-1yej70y-MuiTypography-root"
+      >
+        CoinStats
+      </h5>
+    </div>
+    <ul
+      class="MuiList-root MuiList-padding css-1u169s7-MuiList-root"
+    >
+      <a
+        href="/dashboard"
+      />
+      <a
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1qa1mqp-MuiListItem-root"
+      >
+        <div
+          class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+            />
+            <polyline
+              points="9 22 9 12 15 12 15 22"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiListItemText-root css-1y2w5y4-MuiListItemText-root"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+          >
+            Dashboard
+          </span>
+        </div>
+      </a>
+      <a
+        href="/analytics"
+      />
+      <a
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1qa1mqp-MuiListItem-root"
+      >
+        <div
+          class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line
+              x1="18"
+              x2="18"
+              y1="20"
+              y2="10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="20"
+              y2="4"
+            />
+            <line
+              x1="6"
+              x2="6"
+              y1="20"
+              y2="14"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiListItemText-root css-1y2w5y4-MuiListItemText-root"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+          >
+            Analytics
+          </span>
+        </div>
+      </a>
+      <a
+        href="/assets"
+      />
+      <a
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1qa1mqp-MuiListItem-root"
+      >
+        <div
+          class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line
+              x1="12"
+              x2="12"
+              y1="1"
+              y2="23"
+            />
+            <path
+              d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiListItemText-root css-1y2w5y4-MuiListItemText-root"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+          >
+            Assets
+          </span>
+        </div>
+      </a>
+      <a
+        href="/settings"
+      />
+      <a
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1qa1mqp-MuiListItem-root"
+      >
+        <div
+          class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="3"
+            />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiListItemText-root css-1y2w5y4-MuiListItemText-root"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1edfpdg-MuiTypography-root"
+          >
+            Settings
+          </span>
+        </div>
+      </a>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
