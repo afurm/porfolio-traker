@@ -1,9 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, Button } from '@mui/material';
 import { FiHome, FiBarChart2, FiDollarSign, FiSettings } from 'react-icons/fi';
+import { useAuth } from '@/context/AuthContext';
 
 const Sidebar: React.FC = () => {
+  const { user, login, logout } = useAuth(); // Get authentication state and functions
+
   return (
     <Box
       sx={{
@@ -20,38 +23,31 @@ const Sidebar: React.FC = () => {
         </Typography>
       </Box>
       <List>
-        <Link href="/dashboard" passHref>
-          <ListItem button component="a">
-            <ListItemIcon>
-              <FiHome />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-        </Link>
-        <Link href="/analytics" passHref>
-          <ListItem button component="a">
-            <ListItemIcon>
-              <FiBarChart2 />
-            </ListItemIcon>
-            <ListItemText primary="Analytics" />
-          </ListItem>
-        </Link>
-        <Link href="/assets" passHref>
-          <ListItem button component="a">
-            <ListItemIcon>
-              <FiDollarSign />
-            </ListItemIcon>
-            <ListItemText primary="Assets" />
-          </ListItem>
-        </Link>
-        <Link href="/settings" passHref>
-          <ListItem button component="a">
-            <ListItemIcon>
-              <FiSettings />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Link>
+        <ListItem button component={Link} href="/transaction-history">
+          <ListItemIcon>
+            <FiDollarSign />
+          </ListItemIcon>
+          <ListItemText primary="Transaction History" />
+        </ListItem>
+        <ListItem button component={Link} href="/add-transaction">
+          <ListItemIcon>
+            <FiDollarSign />
+          </ListItemIcon>
+          <ListItemText primary="Add Transaction" />
+        </ListItem>
+        <ListItem>
+        {user ? (
+            // Show the Logout button if the user is logged in
+            <Button color="inherit" onClick={logout} sx={{ marginRight: 1 }}>
+              Logout
+            </Button>
+          ) : (
+            // Show the Login button if the user is not logged in
+            <Button color="inherit" onClick={login} sx={{ marginRight: 1 }}>
+              Login
+            </Button>
+          )}
+        </ListItem>
       </List>
     </Box>
   );
