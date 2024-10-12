@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import React from 'react';
 import AddCryptoForm from '@/components/AddCryptoForm';
 
 const Dashboard: NextPage = () => {
