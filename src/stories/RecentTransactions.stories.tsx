@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import RecentTransactions, { RecentTransactionsProps } from '@/components/RecentTransactions';
-
 
 export default {
   title: 'Components/RecentTransactions',

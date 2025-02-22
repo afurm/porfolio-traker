@@ -38,9 +38,7 @@ export const usePortfolio = () => {
   const fetchSuggestions = async (query: string) => {
     if (query.length < 2) return;
     try {
-      const response = await axios.get(
-        `https://api.coingecko.com/api/v3/search?query=${query}`
-      );
+      const response = await axios.get(`https://api.coingecko.com/api/v3/search?query=${query}`);
       setSuggestions(response.data.coins.map((coin: any) => coin.name));
     } catch (error) {
       console.error('Error fetching suggestions:', error);

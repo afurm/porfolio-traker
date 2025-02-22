@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
-
 import Sidebar from '@/components/Sidebar';
 
 export default {
@@ -9,9 +8,7 @@ export default {
   component: Sidebar,
 } as Meta;
 
-const Template: StoryFn = () => (
-  <Sidebar />
-);
+const Template: StoryFn = () => <Sidebar />;
 
 export const Default = Template.bind({});
 Default.parameters = {

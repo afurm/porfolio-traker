@@ -63,7 +63,8 @@ interface DetailedFeature {
 const detailedFeatures: DetailedFeature[] = [
   {
     title: 'Advanced Portfolio Dashboard',
-    description: 'Track your entire crypto portfolio in real-time with advanced analytics and performance metrics.',
+    description:
+      'Track your entire crypto portfolio in real-time with advanced analytics and performance metrics.',
     icon: 'BarChart2',
     cta: 'View Portfolio',
     link: '/portfolio',
@@ -75,12 +76,13 @@ const detailedFeatures: DetailedFeature[] = [
       'Real-time portfolio tracking',
       'Performance analytics',
       'Asset allocation insights',
-      'Historical data analysis'
-    ]
+      'Historical data analysis',
+    ],
   },
   {
     title: 'Smart Transaction Management',
-    description: 'Keep track of all your crypto transactions with detailed history and automated reporting.',
+    description:
+      'Keep track of all your crypto transactions with detailed history and automated reporting.',
     icon: 'RefreshCcw',
     cta: 'View Transactions',
     link: '/transactions',
@@ -92,8 +94,8 @@ const detailedFeatures: DetailedFeature[] = [
       'Complete transaction history',
       'Automated tax reporting',
       'Performance tracking',
-      'Export capabilities'
-    ]
+      'Export capabilities',
+    ],
   },
   {
     title: 'Market Intelligence',
@@ -109,8 +111,8 @@ const detailedFeatures: DetailedFeature[] = [
       'Real-time market data',
       'Trend analysis',
       'Price alerts',
-      'Market sentiment analysis'
-    ]
+      'Market sentiment analysis',
+    ],
   },
   {
     title: 'AI-Powered Analytics',
@@ -126,8 +128,8 @@ const detailedFeatures: DetailedFeature[] = [
       'Predictive analytics',
       'Risk assessment',
       'Portfolio optimization',
-      'Custom reports'
-    ]
+      'Custom reports',
+    ],
   },
   {
     title: 'Smart Alert System',
@@ -139,12 +141,7 @@ const detailedFeatures: DetailedFeature[] = [
     color: '#ef4444',
     gradient: 'from-red-500/20 to-red-600/5',
     iconType: 'alerts',
-    benefits: [
-      'Price alerts',
-      'Portfolio notifications',
-      'Market event alerts',
-      'Custom triggers'
-    ]
+    benefits: ['Price alerts', 'Portfolio notifications', 'Market event alerts', 'Custom triggers'],
   },
   {
     title: 'Asset Management',
@@ -156,13 +153,8 @@ const detailedFeatures: DetailedFeature[] = [
     color: '#6366f1',
     gradient: 'from-indigo-500/20 to-indigo-600/5',
     iconType: 'wallet',
-    benefits: [
-      'Asset tracking',
-      'Portfolio rebalancing',
-      'Performance metrics',
-      'Risk management'
-    ]
-  }
+    benefits: ['Asset tracking', 'Portfolio rebalancing', 'Performance metrics', 'Risk management'],
+  },
 ];
 
 // Enhanced features with more details
@@ -225,23 +217,24 @@ const testimonials = [
     name: 'Sarah Chen',
     role: 'Crypto Trader',
     image: '/avatars/sarah.jpg',
-    content: "This platform helped me grow my portfolio by 200%! The AI insights are incredibly accurate.",
-    rating: 5
+    content:
+      'This platform helped me grow my portfolio by 200%! The AI insights are incredibly accurate.',
+    rating: 5,
   },
   {
     name: 'Michael Rodriguez',
     role: 'DeFi Investor',
     image: '/avatars/michael.jpg',
-    content: "The real-time analytics and custom alerts have transformed my trading strategy.",
-    rating: 5
+    content: 'The real-time analytics and custom alerts have transformed my trading strategy.',
+    rating: 5,
   },
   {
     name: 'Emma Thompson',
     role: 'Portfolio Manager',
     image: '/avatars/emma.jpg',
     content: "Best crypto tracking platform I've used. The AI predictions are spot-on!",
-    rating: 5
-  }
+    rating: 5,
+  },
 ];
 
 // Pricing plans
@@ -254,10 +247,10 @@ const plans = [
       'Basic portfolio tracking',
       'Limited price alerts',
       'Standard market data',
-      'Email support'
+      'Email support',
     ],
     cta: 'Get Started',
-    icon: 'Rocket'
+    icon: 'Rocket',
   },
   {
     name: 'Premium',
@@ -270,31 +263,34 @@ const plans = [
       'Advanced analytics',
       'DeFi portfolio tracking',
       'Priority support',
-      'API access'
+      'API access',
     ],
     cta: 'Start Free Trial',
-    icon: 'Diamond'
-  }
+    icon: 'Diamond',
+  },
 ];
 
 // FAQ items
 const faqItems = [
   {
     question: 'How secure is my portfolio data?',
-    answer: 'We use bank-level encryption and never store your private keys. Your security is our top priority.'
+    answer:
+      'We use bank-level encryption and never store your private keys. Your security is our top priority.',
   },
   {
     question: 'What exchanges do you support?',
-    answer: 'We support all major exchanges including Binance, Coinbase, Kraken, and more through API integration.'
+    answer:
+      'We support all major exchanges including Binance, Coinbase, Kraken, and more through API integration.',
   },
   {
     question: 'Do I need coding skills to use this?',
-    answer: 'Not at all! Our platform is designed to be user-friendly while providing powerful features.'
+    answer:
+      'Not at all! Our platform is designed to be user-friendly while providing powerful features.',
   },
   {
     question: 'How accurate are the AI predictions?',
-    answer: 'Our AI model has shown 85% accuracy in trend predictions based on historical data.'
-  }
+    answer: 'Our AI model has shown 85% accuracy in trend predictions based on historical data.',
+  },
 ];
 
 export default function Home() {
@@ -308,7 +304,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
           className="absolute inset-0 bg-gradient-to-br from-background via-background to-background opacity-90"
         />
       </div>
@@ -329,12 +325,13 @@ export default function Home() {
             <motion.h1
               className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"
               whileHover={{ rotateX: 10, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               Master Your Crypto Portfolio with AI-Powered Insights
             </motion.h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Advanced portfolio tracking, real-time analytics, and AI-powered insights to optimize your crypto investments
+              Advanced portfolio tracking, real-time analytics, and AI-powered insights to optimize
+              your crypto investments
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -360,10 +357,7 @@ export default function Home() {
           </motion.div>
 
           {/* Market Stats with enhanced animations */}
-          <motion.div
-            variants={fadeIn}
-            className="grid md:grid-cols-4 gap-6 mb-16"
-          >
+          <motion.div variants={fadeIn} className="grid md:grid-cols-4 gap-6 mb-16">
             {marketStats.map((stat) => (
               <motion.div
                 key={stat.label}
@@ -375,8 +369,11 @@ export default function Home() {
                     <h3 className="text-sm text-muted-foreground mb-2">{stat.label}</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-2xl font-bold">{stat.value}</span>
-                      <span className={`text-sm flex items-center gap-1 ${stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                        }`}>
+                      <span
+                        className={`text-sm flex items-center gap-1 ${
+                          stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                        }`}
+                      >
                         <Icon
                           name={stat.trend === 'up' ? 'TrendingUp' : 'TrendingDown'}
                           className="h-4 w-4"
@@ -417,7 +414,9 @@ export default function Home() {
                       <div className="flex items-center gap-6">
                         <div className="text-right">
                           <div className="font-medium">{crypto.price}</div>
-                          <span className={`text-sm ${crypto.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                          <span
+                            className={`text-sm ${crypto.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}
+                          >
                             {crypto.change}
                           </span>
                         </div>
@@ -462,15 +461,25 @@ export default function Home() {
                     className={`flex flex-col gap-8 items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                   >
                     <div className="flex-1 space-y-6">
-                      <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.gradient}`}>
-                        <Icon name={feature.icon} className="h-6 w-6" style={{ color: feature.color }} />
+                      <div
+                        className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.gradient}`}
+                      >
+                        <Icon
+                          name={feature.icon}
+                          className="h-6 w-6"
+                          style={{ color: feature.color }}
+                        />
                       </div>
                       <h3 className="text-2xl md:text-3xl font-bold">{feature.title}</h3>
                       <p className="text-muted-foreground text-lg">{feature.description}</p>
                       <ul className="space-y-3">
                         {feature.benefits.map((benefit) => (
                           <li key={benefit} className="flex items-center gap-2">
-                            <Icon name="Check" className="h-5 w-5" style={{ color: feature.color }} />
+                            <Icon
+                              name="Check"
+                              className="h-5 w-5"
+                              style={{ color: feature.color }}
+                            />
                             <span>{benefit}</span>
                           </li>
                         ))}
@@ -478,10 +487,12 @@ export default function Home() {
                       <Button
                         size="lg"
                         className="mt-6 text-white shadow-lg transition-all duration-300"
-                        style={{
-                          background: `linear-gradient(to right, ${feature.color}, ${feature.color}dd)`,
-                          '--tw-shadow-color': `${feature.color}33`,
-                        } as React.CSSProperties}
+                        style={
+                          {
+                            background: `linear-gradient(to right, ${feature.color}, ${feature.color}dd)`,
+                            '--tw-shadow-color': `${feature.color}33`,
+                          } as React.CSSProperties
+                        }
                       >
                         <Link href={feature.link}>
                           {feature.cta}
@@ -513,7 +524,9 @@ export default function Home() {
               >
                 <Card className="glass-card border-white/10 backdrop-blur-xl bg-white/5 h-full">
                   <CardContent className="p-6">
-                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.gradient} mb-4`}>
+                    <div
+                      className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.gradient} mb-4`}
+                    >
                       <Icon name={feature.icon as IconName} className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -536,13 +549,11 @@ export default function Home() {
           <motion.div variants={fadeIn} className="text-center">
             <Card className="glass-card border-white/10 backdrop-blur-xl bg-white/5">
               <CardContent className="p-12">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="max-w-2xl mx-auto"
-                >
+                <motion.div whileHover={{ scale: 1.02 }} className="max-w-2xl mx-auto">
                   <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Trading?</h2>
                   <p className="text-muted-foreground mb-8">
-                    Join thousands of traders who are already using our platform to track and optimize their crypto portfolios.
+                    Join thousands of traders who are already using our platform to track and
+                    optimize their crypto portfolios.
                   </p>
                   <Button
                     size="lg"
@@ -627,9 +638,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <Button className="w-full glass-card bg-gradient-to-r from-blue-500 to-purple-500">
-                  <Link href={plan.name === 'Free' ? '/portfolio' : '/pricing'}>
-                    {plan.cta}
-                  </Link>
+                  <Link href={plan.name === 'Free' ? '/portfolio' : '/pricing'}>{plan.cta}</Link>
                 </Button>
               </motion.div>
             ))}
@@ -665,27 +674,104 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                <li><Link href="/features" className="text-muted-foreground transition-colors hover:text-foreground">Features</Link></li>
-                <li><Link href="/blog" className="text-muted-foreground transition-colors hover:text-foreground">Blog</Link></li>
-                <li><Link href="/pricing" className="text-muted-foreground transition-colors hover:text-foreground">Pricing</Link></li>
-                <li><Link href="/support" className="text-muted-foreground transition-colors hover:text-foreground">Support</Link></li>
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/pricing"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/support"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Support
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">Community</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"><Icon name="Twitter" className="h-4 w-4" /> Twitter</a></li>
-                <li><a href="#" className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"><Icon name="MessageSquare" className="h-4 w-4" /> Discord</a></li>
-                <li><a href="#" className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"><Icon name="Send" className="h-4 w-4" /> Telegram</a></li>
-                <li><a href="#" className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"><Icon name="Github" className="h-4 w-4" /> GitHub</a></li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"
+                  >
+                    <Icon name="Twitter" className="h-4 w-4" /> Twitter
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"
+                  >
+                    <Icon name="MessageSquare" className="h-4 w-4" /> Discord
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"
+                  >
+                    <Icon name="Send" className="h-4 w-4" /> Telegram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"
+                  >
+                    <Icon name="Github" className="h-4 w-4" /> GitHub
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">Legal</h4>
               <ul className="space-y-2">
-                <li><Link href="/privacy" className="text-muted-foreground transition-colors hover:text-foreground">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-muted-foreground transition-colors hover:text-foreground">Terms of Service</Link></li>
-                <li><Link href="/disclaimer" className="text-muted-foreground transition-colors hover:text-foreground">Disclaimer</Link></li>
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/terms"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/disclaimer"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Disclaimer
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -705,7 +791,10 @@ export default function Home() {
           </div>
           <div className="mt-12 pt-8 border-t border-border/10 text-center text-sm text-muted-foreground">
             <p>© 2025 CryptoTracker. All rights reserved.</p>
-            <p className="mt-2">Cryptocurrency investments are subject to market risks. Past performance does not guarantee future results.</p>
+            <p className="mt-2">
+              Cryptocurrency investments are subject to market risks. Past performance does not
+              guarantee future results.
+            </p>
           </div>
         </div>
       </footer>

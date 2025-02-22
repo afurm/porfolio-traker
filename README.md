@@ -1,94 +1,188 @@
-# Crypto Portfolio Tracker
+# CryptoTracker - Advanced Cryptocurrency Portfolio Management
 
-This is a cryptocurrency portfolio tracker built with Next.js, TypeScript, and Firebase. The application allows users to add cryptocurrencies to their portfolio, visualize them using charts, and get real-time price updates.
+A modern, feature-rich cryptocurrency portfolio tracker built with Next.js, TypeScript, and cutting-edge web technologies. Track your crypto investments with real-time data, advanced analytics, and AI-powered insights.
 
-## Features
+## ✨ Features
 
-- User authentication with Google using Firebase.
-- Add cryptocurrencies to your portfolio.
-- Visualize your portfolio using Recharts.
-- Real-time price data from CoinGecko API.
-- Component documentation with Storybook.
+### 📊 Advanced Portfolio Dashboard
 
-## Getting Started
+- Real-time portfolio tracking with live price updates
+- Interactive 3D visualizations of portfolio performance
+- Customizable charts and data views
+- Asset allocation breakdown
+
+### 💰 Smart Transaction Management
+
+- Automated transaction tracking
+- Support for multiple transaction types
+- Historical transaction analysis
+- CSV import/export functionality
+
+### 📈 Market Intelligence
+
+- Real-time market data and trends
+- Price alerts and notifications
+- Technical analysis indicators
+- Market sentiment analysis
+
+### 🤖 AI-Powered Analytics
+
+- Predictive price analysis
+- Portfolio optimization suggestions
+- Risk assessment metrics
+- Pattern recognition
+
+### ⚡ Smart Alert System
+
+- Customizable price alerts
+- Portfolio performance notifications
+- Market trend alerts
+- Email and push notifications
+
+### 🔐 Secure Asset Management
+
+- Multi-wallet support
+- Encrypted data storage
+- Two-factor authentication
+- Regular security audits
+
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, React Query
+- **3D Visualization**: Three.js, React Three Fiber
+- **Styling**: Tailwind CSS, Framer Motion
+- **State Management**: Zustand
+- **Authentication**: Firebase
+- **Database**: PostgreSQL, Prisma
+- **Caching**: Redis
+- **Testing**: Jest, React Testing Library
+- **Documentation**: Storybook
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or later)
-- npm or yarn
+- Node.js (v18 or later)
+- PostgreSQL
+- Redis (optional, for caching)
+- Firebase account
 
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/crypto-portfolio-tracker.git
+   cd crypto-portfolio-tracker
    ```
 
-2. Install the dependencies:
+2. Install dependencies:
+
    ```bash
-   cd crypto-portfolio-tracker
    npm install
    ```
 
-3. Create a `.env` file in the root directory and add your Firebase configuration:
-   ```env
-   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+3. Set up environment variables:
+
+   ```bash
+   cp .env.example .env
    ```
 
-### Running the App
+   Fill in your environment variables:
 
-- Development mode:
-  ```bash
-  npm run dev
-  ```
+   - Database configuration
+   - Firebase credentials
+   - Redis configuration (if using)
+   - API keys
 
-- Build for production:
-  ```bash
-  npm run build
-  ```
+4. Initialize the database:
 
-- Start the production server:
-  ```bash
-  npm run start
-  ```
+   ```bash
+   npx prisma migrate dev
+   ```
 
-### Running Storybook
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-- Start Storybook:
-  ```bash
-  npm run storybook
-  ```
+### Running Tests
 
-- Build Storybook:
-  ```bash
-  npm run build-storybook
-  ```
+```bash
+# Unit tests
+npm test
 
-## Folder Structure
+# Watch mode
+npm test:watch
 
-- `src/api/` - API service to interact with CoinGecko.
-- `src/components/` - Reusable components like `AddCryptoForm` and `PortfolioChart`.
-- `src/context/` - Authentication context for managing user state.
-- `src/firebase/` - Firebase configuration.
-- `src/hooks/` - Custom React hooks.
-- `src/pages/` - Application pages (`index.tsx`, `dashboard.tsx`, etc.).
-- `src/styles/` - Global and component-specific styles.
-- `src/utils/` - Utility functions and constants.
-- `.storybook/` - Storybook configuration files.
+# Coverage report
+npm test:coverage
+```
 
-## Technologies Used
+### Storybook Development
 
-- **Next.js** - Framework for server-rendered React applications.
-- **TypeScript** - Strongly typed JavaScript.
-- **Firebase** - Backend for authentication and data storage.
-- **Recharts** - Charting library for visualizing the portfolio.
-- **Storybook** - Tool for UI component development and documentation.
+```bash
+# Start Storybook
+npm run storybook
 
-## License
+# Build static Storybook
+npm run build-storybook
+```
 
-This project is licensed under the MIT License.
+## 📁 Project Structure
+
+```
+src/
+├── animations/     # Animation utilities and configs
+├── api/           # API service layer
+├── components/    # React components
+├── hooks/         # Custom React hooks
+├── lib/           # Utility functions and configurations
+├── pages/         # Next.js pages
+├── store/         # Zustand store and slices
+├── styles/        # Global styles and themes
+└── tests/         # Test files
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Required environment variables:
+
+- `DATABASE_URL`: PostgreSQL connection string
+- `REDIS_URL`: Redis connection string (optional)
+- `FIREBASE_*`: Firebase configuration
+- `NEXT_PUBLIC_*`: Public environment variables
+
+### Firebase Setup
+
+1. Create a Firebase project
+2. Enable Authentication
+3. Set up Firestore rules
+4. Add Firebase configuration to `.env`
+
+## 📚 Documentation
+
+- [Component Documentation](https://your-storybook-url.com)
+- [API Documentation](https://your-api-docs-url.com)
+- [Contributing Guidelines](CONTRIBUTING.md)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [CoinGecko API](https://www.coingecko.com/en/api) for cryptocurrency data
+- [Three.js](https://threejs.org/) for 3D visualizations
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Firebase](https://firebase.google.com/) for authentication and real-time features

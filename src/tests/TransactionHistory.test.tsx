@@ -12,14 +12,14 @@ describe('TransactionHistory Component Snapshot Test', () => {
           amount: 2,
           transactionType: 'buy',
           date: '2024-10-01',
-          currentPrice: 50000.00
+          currentPrice: 50000.0,
         },
         {
           coinName: 'Ethereum',
           amount: 5,
           transactionType: 'sell',
           date: '2024-10-02',
-          currentPrice: 3000.00
+          currentPrice: 3000.0,
         },
       ],
     };

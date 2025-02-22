@@ -7,12 +7,7 @@ import { fadeIn } from '@/animations/framer';
 
 export default function TransactionHistory() {
   return (
-    <motion.div
-      variants={fadeIn}
-      initial="initial"
-      animate="animate"
-      className="space-y-6"
-    >
+    <motion.div variants={fadeIn} initial="initial" animate="animate" className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Transaction History</h1>

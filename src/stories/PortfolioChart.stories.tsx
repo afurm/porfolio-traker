@@ -2,7 +2,6 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import PortfolioChart, { PortfolioChartProps } from '@/components/PortfolioChart';
 
-
 export default {
   title: 'Components/PortfolioChart',
   component: PortfolioChart,

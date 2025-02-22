@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { PieChart, Pie, Tooltip, Cell, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+  Legend,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+} from 'recharts';
 import { Button, Box, Container } from '@mui/material';
 
 export interface PortfolioChartProps {
@@ -42,7 +53,12 @@ const PortfolioChart: React.FC<PortfolioChartProps> = ({ assets }) => {
           <Legend />
         </PieChart>
       ) : (
-        <BarChart width={500} height={300} data={assets} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <BarChart
+          width={500}
+          height={300}
+          data={assets}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="coinName" />
           <YAxis />

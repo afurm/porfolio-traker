@@ -1,5 +1,14 @@
 import React from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+} from 'recharts';
 import { Box, Typography, Paper } from '@mui/material';
 
 export interface PortfolioAllocationProps {
@@ -20,7 +29,13 @@ const PortfolioAllocation: React.FC<PortfolioAllocationProps> = ({ data }) => {
             <PolarRadiusAxis angle={30} domain={[0, 100]} />
             <Tooltip />
             <Legend />
-            <Radar name="Allocation" dataKey="percentage" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <Radar
+              name="Allocation"
+              dataKey="percentage"
+              stroke="#8884d8"
+              fill="#8884d8"
+              fillOpacity={0.6}
+            />
           </RadarChart>
         </ResponsiveContainer>
       </Paper>

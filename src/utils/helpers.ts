@@ -1,4 +1,3 @@
-
 export const isValidCrypto = (coinName: string, supportedCryptos: string[]): boolean => {
   return supportedCryptos.includes(coinName.toLowerCase());
 };

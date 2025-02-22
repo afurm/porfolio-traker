@@ -7,9 +7,16 @@ export interface PortfolioSummaryProps {
   profitLossPercentage: number;
 }
 
-const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ totalWorth, totalProfitLoss, profitLossPercentage }) => {
+const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({
+  totalWorth,
+  totalProfitLoss,
+  profitLossPercentage,
+}) => {
   return (
-    <Container maxWidth="sm" sx={{ p: 4, backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 3 }}>
+    <Container
+      maxWidth="sm"
+      sx={{ p: 4, backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 3 }}
+    >
       <Typography variant="h4" align="center" gutterBottom>
         Portfolio Summary
       </Typography>

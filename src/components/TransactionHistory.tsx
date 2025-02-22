@@ -37,7 +37,9 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ transactions })
     const fetchLatestPrices = async () => {
       try {
         // Create a unique list of coin names (e.g., ['bitcoin', 'ethereum'])
-        const uniqueCoins = Array.from(new Set(transactions.map((tx) => tx.coinName.toLowerCase())));
+        const uniqueCoins = Array.from(
+          new Set(transactions.map((tx) => tx.coinName.toLowerCase()))
+        );
 
         // Fetch the latest price for all the unique coins from CoinGecko
         const response = await axios.get(
@@ -62,7 +64,14 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ transactions })
   }, [transactions]);
 
   return (
-    <Box sx={{ p: 4, backgroundColor: theme.palette.background.default, borderRadius: 2, boxShadow: 3 }}>
+    <Box
+      sx={{
+        p: 4,
+        backgroundColor: theme.palette.background.default,
+        borderRadius: 2,
+        boxShadow: 3,
+      }}
+    >
       <Typography variant="h5" fontWeight="bold" textAlign="center" mb={3}>
         Transaction History
       </Typography>
@@ -71,7 +80,11 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ transactions })
           No transactions found
         </Typography>
       ) : (
-        <TableContainer component={Paper} elevation={3} sx={{ maxWidth: 800, mx: 'auto', borderRadius: 2 }}>
+        <TableContainer
+          component={Paper}
+          elevation={3}
+          sx={{ maxWidth: 800, mx: 'auto', borderRadius: 2 }}
+        >
           <Table>
             <TableHead>
               <TableRow>
@@ -92,21 +105,28 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ transactions })
                   <TableRow
                     key={index}
                     sx={{
-                      backgroundColor: transaction.transactionType === 'buy'
-                        ? theme.palette.success.lighter
-                        : theme.palette.error.lighter,
+                      backgroundColor:
+                        transaction.transactionType === 'buy'
+                          ? theme.palette.success.lighter
+                          : theme.palette.error.lighter,
                       '&:hover': {
-                        backgroundColor: transaction.transactionType === 'buy'
-                          ? theme.palette.success.light
-                          : theme.palette.error.light,
+                        backgroundColor:
+                          transaction.transactionType === 'buy'
+                            ? theme.palette.success.light
+                            : theme.palette.error.light,
                       },
                     }}
                   >
                     <TableCell>{transaction.coinName}</TableCell>
                     <TableCell>{transaction.amount}</TableCell>
                     <TableCell>
-                      <Typography color={transaction.transactionType === 'buy' ? 'success.main' : 'error.main'}>
-                        {transaction.transactionType.charAt(0).toUpperCase() + transaction.transactionType.slice(1)}
+                      <Typography
+                        color={
+                          transaction.transactionType === 'buy' ? 'success.main' : 'error.main'
+                        }
+                      >
+                        {transaction.transactionType.charAt(0).toUpperCase() +
+                          transaction.transactionType.slice(1)}
                       </Typography>
                     </TableCell>
                     <TableCell>${transaction.currentPrice.toFixed(2)}</TableCell>

@@ -9,12 +9,7 @@ import '@/styles/globals.css';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryProvider>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <Layout>
           <Component {...pageProps} />
         </Layout>

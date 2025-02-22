@@ -147,7 +147,7 @@ describe('AddCryptoForm', () => {
   });
 
   it('handles errors during form submission', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     (set as jest.Mock).mockRejectedValue(new Error('Firebase error'));
 
     await act(async () => {
@@ -174,7 +174,7 @@ describe('AddCryptoForm', () => {
   });
 
   it('handles errors when fetching coin price', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     (axios.get as jest.Mock).mockRejectedValue(new Error('API error'));
 
     await act(async () => {
@@ -201,7 +201,7 @@ describe('AddCryptoForm', () => {
   });
 
   it('prevents submission when user is not authenticated', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     render(
       <AuthContext.Provider value={{ ...mockAuthContext, user: null }}>
@@ -232,7 +232,7 @@ describe('AddCryptoForm', () => {
   });
 
   it('prevents submission when coin is not found', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     await act(async () => {
       renderComponent();
@@ -264,7 +264,7 @@ describe('AddCryptoForm', () => {
     const mockUser = { uid: '123', email: 'test@example.com' };
     const mockCryptoList = [
       { id: 'bitcoin', symbol: 'btc', name: 'Bitcoin' },
-      { id: 'ethereum', symbol: 'eth', name: 'Ethereum' }
+      { id: 'ethereum', symbol: 'eth', name: 'Ethereum' },
     ];
     (getCryptoList as jest.Mock).mockResolvedValue(mockCryptoList);
 
@@ -276,7 +276,7 @@ describe('AddCryptoForm', () => {
 
     // Wait for the component to load the crypto list
     await act(async () => {
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
     // Type in the coin name input to trigger suggestions

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import InvestmentPerformance, { InvestmentPerformanceProps } from '@/components/InvestmentPerformance';
+import InvestmentPerformance, {
+  InvestmentPerformanceProps,
+} from '@/components/InvestmentPerformance';
 
 export default {
   title: 'Components/InvestmentPerformance',

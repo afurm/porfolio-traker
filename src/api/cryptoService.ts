@@ -27,7 +27,6 @@ export const getCryptoList = async (): Promise<unknown[]> => {
   }
 };
 
-
 export const getMarketData = async (): Promise<unknown> => {
   try {
     const response = await axios.get(`${BASE_URL}/coins/markets`, {

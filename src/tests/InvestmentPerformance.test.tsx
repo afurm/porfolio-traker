@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import InvestmentPerformance, { InvestmentPerformanceProps } from '@/components/InvestmentPerformance';
+import InvestmentPerformance, {
+  InvestmentPerformanceProps,
+} from '@/components/InvestmentPerformance';
 
 global.ResizeObserver = class {
   observe() {}

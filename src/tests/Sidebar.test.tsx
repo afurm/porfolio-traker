@@ -9,7 +9,7 @@ describe('Sidebar Component', () => {
     const mockAuthContext = {
       user: { uid: '123', email: 'test@example.com' },
       login: jest.fn(),
-      logout: jest.fn()
+      logout: jest.fn(),
     };
 
     const { asFragment } = render(
@@ -24,7 +24,7 @@ describe('Sidebar Component', () => {
     const mockAuthContext = {
       user: null,
       login: jest.fn(),
-      logout: jest.fn()
+      logout: jest.fn(),
     };
 
     const { asFragment } = render(

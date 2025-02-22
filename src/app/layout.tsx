@@ -5,20 +5,14 @@ import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={inter.className}>
-                <QueryProvider>
-                    <ThemeProvider>
-                        {children}
-                    </ThemeProvider>
-                </QueryProvider>
-            </body>
-        </html>
-    );
-} 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <QueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </QueryProvider>
+      </body>
+    </html>
+  );
+}

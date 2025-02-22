@@ -2,7 +2,6 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import MarketTrend, { MarketTrendProps } from '@/components/MarketTrend';
 
-
 export default {
   title: 'Components/MarketTrend',
   component: MarketTrend,

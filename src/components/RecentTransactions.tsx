@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-  Paper,
-} from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemText, Divider, Paper } from '@mui/material';
 
 interface Transaction {
   coinName: string;
@@ -21,7 +13,6 @@ export interface RecentTransactionsProps {
 }
 
 const RecentTransactions: React.FC<RecentTransactionsProps> = ({ transactions }) => {
-
   return (
     <Box sx={{ p: 4, maxWidth: 600, mx: 'auto' }}>
       <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>

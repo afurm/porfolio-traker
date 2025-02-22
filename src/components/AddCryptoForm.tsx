@@ -4,7 +4,14 @@ import { useMutation } from '@tanstack/react-query';
 import { addTransaction } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
 import { Icon } from '@/components/ui/icon';
 import { fadeIn } from '@/animations/framer';
 
@@ -32,21 +39,14 @@ export default function AddCryptoForm() {
   };
 
   return (
-    <motion.div
-      variants={fadeIn}
-      initial="initial"
-      animate="animate"
-      className="mx-auto max-w-md"
-    >
+    <motion.div variants={fadeIn} initial="initial" animate="animate" className="mx-auto max-w-md">
       <Card className="border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Icon name="PlusCircle" className="h-5 w-5 text-primary" />
             Add Transaction
           </CardTitle>
-          <CardDescription>
-            Record a new cryptocurrency transaction
-          </CardDescription>
+          <CardDescription>Record a new cryptocurrency transaction</CardDescription>
         </CardHeader>
 
         <form onSubmit={handleSubmit}>
@@ -96,11 +96,7 @@ export default function AddCryptoForm() {
           </CardContent>
 
           <CardFooter>
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={mutation.isPending}
-            >
+            <Button type="submit" className="w-full" disabled={mutation.isPending}>
               {mutation.isPending ? (
                 <>
                   <Icon name="Loader2" className="mr-2 h-4 w-4 animate-spin" />
