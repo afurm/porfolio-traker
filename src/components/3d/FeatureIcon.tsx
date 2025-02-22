@@ -1,592 +1,258 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Text } from '@react-three/drei';
-import * as THREE from 'three';
-import { Group, Vector3 } from 'three';
+import React from 'react';
 
 interface FeatureIconProps {
-  type?: 'dashboard' | 'transactions' | 'market' | 'ai' | 'alerts' | 'wallet';
+  type: 'dashboard' | 'transactions' | 'market' | 'ai' | 'alerts' | 'wallet';
+  className?: string;
 }
 
-// Helper function to create a Vector3
-function createVector3(x: number, y: number, z: number): Vector3 {
-  return new Vector3(x, y, z);
-}
+export default function FeatureIcon({ type, className = '' }: FeatureIconProps) {
+  const icons = {
+    dashboard: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <defs>
+          <linearGradient id="dashboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#818CF8" stopOpacity="0.4" />
+          </linearGradient>
+          <filter id="dashboardGlow">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feComposite in="blur" operator="over" in2="SourceGraphic" />
+          </filter>
+        </defs>
+        {/* Base platform with shadow */}
+        <rect x="2" y="19" width="20" height="1" rx="0.5" fill="#1e293b" fillOpacity="0.2" />
+        <rect x="3" y="18" width="18" height="1" rx="0.5" fill="#4F46E5" fillOpacity="0.1" />
 
-// Helper function to create Euler rotation
-function createEuler(x: number, y: number, z: number): THREE.Euler {
-  return new THREE.Euler(x, y, z);
-}
-
-// Advanced Portfolio Dashboard visualization
-function DashboardIcon() {
-  const group = useRef<Group>(null);
-  useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y += 0.005;
-    }
-  });
-
-  // Create multiple chart elements
-  const charts = [
-    {
-      type: 'bar',
-      color: '#4ECDC4',
-      position: createVector3(-0.6, 0, 0),
-      data: [0.5, 0.8, 0.3, 0.9, 0.6],
-    },
-    {
-      type: 'line',
-      color: '#FF6B6B',
-      position: createVector3(0.6, 0, 0),
-      data: [0.4, 0.7, 0.5, 0.8, 0.6],
-    },
-  ];
-
-  return (
-    <group ref={group}>
-      {/* Base Platform */}
-      <mesh position={[0, -0.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[3, 2]} />
-        <meshStandardMaterial
-          color="#1a1a1a"
-          metalness={0.8}
-          roughness={0.2}
-          opacity={0.9}
-          transparent
+        {/* Main dashboard body */}
+        <rect x="4" y="4" width="16" height="14" rx="2" fill="url(#dashboardGradient)" />
+        <path
+          d="M4 6C4 4.89543 4.89543 4 6 4H18C19.1046 4 20 4.89543 20 6V8H4V6Z"
+          fill="#4F46E5"
+          fillOpacity="0.3"
         />
-      </mesh>
 
-      {/* Bar Chart */}
-      <group position={charts[0].position}>
-        {charts[0].data.map((height, i) => (
-          <mesh key={i} position={[i * 0.2 - 0.4, height / 2, 0]}>
-            <boxGeometry args={[0.15, height, 0.15]} />
-            <meshStandardMaterial
-              color={charts[0].color}
-              metalness={0.6}
-              roughness={0.2}
-              emissive={charts[0].color}
-              emissiveIntensity={0.3}
-            />
-          </mesh>
-        ))}
-      </group>
+        {/* Screen content */}
+        <rect x="6" y="9" width="5" height="3" rx="1" fill="#818CF8" fillOpacity="0.6" />
+        <rect x="13" y="9" width="5" height="3" rx="1" fill="#818CF8" fillOpacity="0.4" />
+        <rect x="6" y="13" width="12" height="2" rx="1" fill="#818CF8" fillOpacity="0.3" />
 
-      {/* Line Chart */}
-      <group position={charts[1].position}>
-        {charts[1].data.map((value, i, arr) => {
-          if (i < arr.length - 1) {
-            return (
-              <mesh key={i} position={[i * 0.2 - 0.3, (value + arr[i + 1]) / 2, 0]}>
-                <cylinderGeometry
-                  args={[
-                    0.02,
-                    0.02,
-                    Math.sqrt(Math.pow(0.2, 2) + Math.pow(arr[i + 1] - value, 2)),
-                    8,
-                  ]}
-                />
-                <meshStandardMaterial
-                  color={charts[1].color}
-                  emissive={charts[1].color}
-                  emissiveIntensity={0.3}
-                />
-              </mesh>
-            );
-          }
-        })}
-        {charts[1].data.map((value, i) => (
-          <mesh key={`point-${i}`} position={[i * 0.2 - 0.4, value, 0]}>
-            <sphereGeometry args={[0.04, 16, 16]} />
-            <meshStandardMaterial
-              color={charts[1].color}
-              emissive={charts[1].color}
-              emissiveIntensity={0.5}
-            />
-          </mesh>
-        ))}
-      </group>
+        {/* Glowing elements */}
+        <circle cx="18" cy="6" r="1" fill="#ffffff" filter="url(#dashboardGlow)" />
+        <circle cx="18" cy="6" r="0.5" fill="#ffffff" />
+      </svg>
+    ),
 
-      {/* Floating Numbers */}
-      {[-0.6, 0, 0.6].map((x, i) => (
-        <group key={i} position={[x, 0.8, 0]}>
-          <mesh>
-            <planeGeometry args={[0.3, 0.15]} />
-            <meshStandardMaterial
-              color="#2a2a2a"
-              metalness={0.8}
-              roughness={0.2}
-              opacity={0.8}
-              transparent
-            />
-          </mesh>
-          <Text
-            position={[0, 0, 0.01]}
-            fontSize={0.08}
-            color="#4ECDC4"
-            anchorX="center"
-            anchorY="middle"
-          >
-            {`$${(Math.random() * 1000).toFixed(2)}`}
-          </Text>
-        </group>
-      ))}
-    </group>
-  );
-}
+    transactions: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <defs>
+          <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.4" />
+          </linearGradient>
+          <linearGradient id="coinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FCD34D" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.6" />
+          </linearGradient>
+        </defs>
 
-// Smart Transaction Management visualization
-function TransactionsIcon() {
-  const group = useRef<Group>(null);
-  useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y += 0.005;
-    }
-  });
-
-  const transactionColors = {
-    send: '#FF6B6B', // Red for sending
-    receive: '#4ECDC4', // Green for receiving
-    exchange: '#FFD93D', // Yellow for exchange
-  };
-
-  return (
-    <group ref={group}>
-      {/* Central Hub */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[0.3, 32, 32]} />
-        <meshStandardMaterial
-          color="#6C5CE7"
-          metalness={0.8}
-          roughness={0.2}
-          emissive="#6C5CE7"
-          emissiveIntensity={0.3}
+        {/* Card with 3D effect */}
+        <rect x="2" y="7" width="20" height="12" rx="2" fill="url(#cardGradient)" />
+        <path
+          d="M2 9C2 7.89543 2.89543 7 4 7H20C21.1046 7 22 7.89543 22 9V11L2 13V9Z"
+          fill="#3B82F6"
+          fillOpacity="0.3"
         />
-      </mesh>
 
-      {/* Transaction Flows */}
-      {[0, 1, 2].map((i) => {
-        const angle = (i * Math.PI * 2) / 3;
-        const radius = 0.8;
-        const x = Math.cos(angle) * radius;
-        const z = Math.sin(angle) * radius;
-
-        return (
-          <group key={i}>
-            {/* Connection Line */}
-            <mesh position={[x / 2, 0, z / 2]} rotation={[Math.PI / 2, -angle, 0]}>
-              <cylinderGeometry args={[0.02, 0.02, radius, 8]} />
-              <meshStandardMaterial
-                color={Object.values(transactionColors)[i]}
-                metalness={0.6}
-                roughness={0.3}
-                emissive={Object.values(transactionColors)[i]}
-                emissiveIntensity={0.2}
-              />
-            </mesh>
-
-            {/* Transaction Node */}
-            <group position={[x, 0, z]}>
-              <mesh>
-                <boxGeometry args={[0.2, 0.2, 0.2]} />
-                <meshStandardMaterial
-                  color={Object.values(transactionColors)[i]}
-                  metalness={0.7}
-                  roughness={0.2}
-                  emissive={Object.values(transactionColors)[i]}
-                  emissiveIntensity={0.3}
-                />
-              </mesh>
-
-              {/* Transaction Amount */}
-              <Text
-                position={[0, 0.3, 0]}
-                fontSize={0.1}
-                color={Object.values(transactionColors)[i]}
-                anchorX="center"
-                anchorY="middle"
-              >
-                {i === 0 ? '-0.5 BTC' : i === 1 ? '+1.2 ETH' : '⇄ USDT'}
-              </Text>
-            </group>
-          </group>
-        );
-      })}
-    </group>
-  );
-}
-
-// Market Intelligence visualization
-function MarketIcon() {
-  const group = useRef<Group>(null);
-  useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y += 0.005;
-    }
-  });
-
-  const marketData = [
-    { symbol: 'BTC', color: '#FF9F43', price: '+5.2%' },
-    { symbol: 'ETH', color: '#4ECDC4', price: '+3.8%' },
-    { symbol: 'DOT', color: '#FF6B6B', price: '-2.1%' },
-  ];
-
-  return (
-    <group ref={group}>
-      {/* Market Globe */}
-      <mesh>
-        <sphereGeometry args={[0.6, 32, 32]} />
-        <meshStandardMaterial
-          color="#2a2a2a"
-          metalness={0.8}
-          roughness={0.2}
-          opacity={0.6}
-          transparent
-          wireframe
+        {/* Chip with metallic effect */}
+        <rect x="4" y="10" width="6" height="4" rx="1" fill="#F59E0B" fillOpacity="0.3" />
+        <path
+          d="M4 11.5L10 11.5M4 12.5L10 12.5"
+          stroke="#F59E0B"
+          strokeWidth="0.5"
+          strokeOpacity="0.5"
         />
-      </mesh>
 
-      {/* Market Data Points */}
-      {marketData.map((item, i) => {
-        const phi = Math.acos(-1 + (2 * i) / marketData.length);
-        const theta = Math.sqrt(marketData.length * Math.PI) * phi;
-        const x = 0.8 * Math.cos(theta) * Math.sin(phi);
-        const y = 0.8 * Math.sin(theta) * Math.sin(phi);
-        const z = 0.8 * Math.cos(phi);
+        {/* Floating coins with shadows */}
+        <g transform="translate(14 6)">
+          <circle cx="2" cy="2" r="2" fill="url(#coinGradient)" />
+          <path d="M2 1.5V2.5M1.5 2H2.5" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.8" />
+        </g>
+        <g transform="translate(16 9)">
+          <circle cx="2" cy="2" r="1.5" fill="url(#coinGradient)" />
+          <path d="M2 1.5V2.5M1.5 2H2.5" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.8" />
+        </g>
+      </svg>
+    ),
 
-        return (
-          <group key={i} position={[x, y, z]}>
-            {/* Price Card */}
-            <mesh>
-              <boxGeometry args={[0.3, 0.15, 0.02]} />
-              <meshStandardMaterial
-                color={item.color}
-                metalness={0.7}
-                roughness={0.2}
-                emissive={item.color}
-                emissiveIntensity={0.3}
-              />
-            </mesh>
+    market: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <defs>
+          <linearGradient id="barGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.4" />
+          </linearGradient>
+          <filter id="marketGlow">
+            <feGaussianBlur stdDeviation="0.5" result="blur" />
+            <feComposite in="blur" operator="over" in2="SourceGraphic" />
+          </filter>
+        </defs>
 
-            {/* Symbol Text */}
-            <Text
-              position={[0, 0.05, 0.02]}
-              fontSize={0.05}
-              color="#ffffff"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {item.symbol}
-            </Text>
+        {/* Base platform with reflection */}
+        <rect x="2" y="19" width="20" height="1" rx="0.5" fill="#1e293b" fillOpacity="0.3" />
+        <rect x="3" y="20" width="18" height="0.5" rx="0.25" fill="#3B82F6" fillOpacity="0.1" />
 
-            {/* Price Text */}
-            <Text
-              position={[0, -0.05, 0.02]}
-              fontSize={0.04}
-              color="#ffffff"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {item.price}
-            </Text>
-          </group>
-        );
-      })}
-    </group>
-  );
-}
+        {/* Bars with 3D effect */}
+        <g filter="url(#marketGlow)">
+          <rect x="4" y="14" width="3" height="5" rx="1" fill="url(#barGradient)" />
+          <rect x="9" y="11" width="3" height="8" rx="1" fill="url(#barGradient)" />
+          <rect x="14" y="8" width="3" height="11" rx="1" fill="url(#barGradient)" />
+          <rect x="19" y="5" width="3" height="14" rx="1" fill="url(#barGradient)" />
+        </g>
 
-// AI-Powered Analytics visualization
-function AIIcon() {
-  const group = useRef<Group>(null);
-  useFrame((state) => {
-    if (group.current) {
-      group.current.rotation.y += 0.005;
-      group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-    }
-  });
-
-  const nodeColors = [
-    '#FF61D2', // Pink
-    '#7B61FF', // Purple
-    '#61FFD2', // Cyan
-    '#FFD261', // Yellow
-  ];
-
-  return (
-    <group ref={group}>
-      {/* Central AI Core */}
-      <mesh>
-        <octahedronGeometry args={[0.3, 0]} />
-        <meshStandardMaterial
-          color="#7B61FF"
-          metalness={0.8}
-          roughness={0.2}
-          emissive="#7B61FF"
-          emissiveIntensity={0.5}
+        {/* Glowing dots */}
+        <circle cx="5.5" cy="13" r="1" fill="#60A5FA" fillOpacity="0.8" filter="url(#marketGlow)" />
+        <circle
+          cx="10.5"
+          cy="10"
+          r="1"
+          fill="#60A5FA"
+          fillOpacity="0.8"
+          filter="url(#marketGlow)"
         />
-      </mesh>
+        <circle cx="15.5" cy="7" r="1" fill="#60A5FA" fillOpacity="0.8" filter="url(#marketGlow)" />
+        <circle cx="20.5" cy="4" r="1" fill="#60A5FA" fillOpacity="0.8" filter="url(#marketGlow)" />
 
-      {/* Neural Network Nodes */}
-      {nodeColors.map((color, i) => {
-        const angle = (i * Math.PI * 2) / nodeColors.length;
-        const radius = 0.6;
-
-        return (
-          <group key={i}>
-            {/* Node */}
-            <mesh position={[Math.cos(angle) * radius, Math.sin(angle) * radius, 0]}>
-              <sphereGeometry args={[0.1, 32, 32]} />
-              <meshStandardMaterial
-                color={color}
-                metalness={0.7}
-                roughness={0.2}
-                emissive={color}
-                emissiveIntensity={0.4}
-              />
-            </mesh>
-
-            {/* Connections */}
-            {nodeColors.map((_, j) => {
-              if (j > i) {
-                const angleJ = (j * Math.PI * 2) / nodeColors.length;
-                const start = new THREE.Vector3(
-                  Math.cos(angle) * radius,
-                  Math.sin(angle) * radius,
-                  0
-                );
-                const end = new THREE.Vector3(
-                  Math.cos(angleJ) * radius,
-                  Math.sin(angleJ) * radius,
-                  0
-                );
-                const mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
-                const connectionRotation = createEuler(
-                  0,
-                  0,
-                  Math.atan2(end.y - start.y, end.x - start.x)
-                );
-
-                return (
-                  <mesh key={`${i}-${j}`} position={mid} rotation={connectionRotation}>
-                    <cylinderGeometry args={[0.01, 0.01, start.distanceTo(end), 8]} />
-                    <meshStandardMaterial
-                      color={color}
-                      metalness={0.7}
-                      roughness={0.2}
-                      opacity={0.4}
-                      transparent
-                    />
-                  </mesh>
-                );
-              }
-            })}
-          </group>
-        );
-      })}
-
-      {/* Pulse Effect */}
-      <mesh scale={1.2}>
-        <sphereGeometry args={[0.3, 32, 32]} />
-        <meshStandardMaterial color="#7B61FF" wireframe transparent opacity={0.2} />
-      </mesh>
-    </group>
-  );
-}
-
-// Smart Alert System visualization
-function AlertsIcon() {
-  const group = useRef<Group>(null);
-  useFrame((state) => {
-    if (group.current) {
-      group.current.rotation.y += 0.005;
-      group.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 2) * 0.1);
-    }
-  });
-
-  const alertTypes = [
-    { color: '#FF6B6B', label: 'Price' },
-    { color: '#4ECDC4', label: 'Volume' },
-    { color: '#FFD93D', label: 'News' },
-  ];
-
-  return (
-    <group ref={group}>
-      {/* Central Alert Hub */}
-      <mesh>
-        <octahedronGeometry args={[0.3, 0]} />
-        <meshStandardMaterial
-          color="#FF6B6B"
-          metalness={0.8}
-          roughness={0.2}
-          emissive="#FF6B6B"
-          emissiveIntensity={0.5}
+        {/* Trend line */}
+        <path
+          d="M4.5 13.5L10.5 10.5L15.5 7.5L20.5 4.5"
+          stroke="#60A5FA"
+          strokeWidth="0.5"
+          strokeDasharray="1 1"
+          strokeOpacity="0.5"
         />
-      </mesh>
+      </svg>
+    ),
 
-      {/* Alert Rings */}
-      {[1.2, 1.5, 1.8].map((scale, i) => (
-        <mesh key={i} scale={scale}>
-          <ringGeometry args={[0.3, 0.31, 32]} />
-          <meshStandardMaterial
-            color={alertTypes[i].color}
-            metalness={0.7}
-            roughness={0.2}
-            opacity={0.3}
-            transparent
+    ai: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <defs>
+          <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#A78BFA" stopOpacity="0.4" />
+          </linearGradient>
+          <filter id="aiGlow">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feComposite in="blur" operator="over" in2="SourceGraphic" />
+          </filter>
+        </defs>
+
+        {/* Central orb with glow */}
+        <circle cx="12" cy="12" r="4" fill="url(#aiGradient)" filter="url(#aiGlow)" />
+        <circle cx="12" cy="12" r="3" fill="#8B5CF6" fillOpacity="0.4" />
+
+        {/* Orbiting particles */}
+        <g transform="rotate(45 12 12)">
+          <circle cx="12" cy="6" r="1.5" fill="#A78BFA" fillOpacity="0.6" />
+          <circle cx="18" cy="12" r="1.5" fill="#A78BFA" fillOpacity="0.6" />
+          <circle cx="12" cy="18" r="1.5" fill="#A78BFA" fillOpacity="0.6" />
+          <circle cx="6" cy="12" r="1.5" fill="#A78BFA" fillOpacity="0.6" />
+        </g>
+
+        {/* Connection lines with glow */}
+        <g filter="url(#aiGlow)" opacity="0.5">
+          <path
+            d="M12 8L12 16M8 12L16 12"
+            stroke="#8B5CF6"
+            strokeWidth="0.5"
+            strokeDasharray="1 1"
           />
-        </mesh>
-      ))}
+          <path
+            d="M8.5 8.5L15.5 15.5M15.5 8.5L8.5 15.5"
+            stroke="#8B5CF6"
+            strokeWidth="0.5"
+            strokeDasharray="1 1"
+          />
+        </g>
+      </svg>
+    ),
 
-      {/* Alert Types */}
-      {alertTypes.map((alert, i) => {
-        const angle = (i * Math.PI * 2) / alertTypes.length;
-        const radius = 0.6;
+    alerts: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <defs>
+          <linearGradient id="bellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#EF4444" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#F87171" stopOpacity="0.4" />
+          </linearGradient>
+          <filter id="bellGlow">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feComposite in="blur" operator="over" in2="SourceGraphic" />
+          </filter>
+        </defs>
 
-        return (
-          <group key={i} position={[Math.cos(angle) * radius, Math.sin(angle) * radius, 0]}>
-            <mesh>
-              <boxGeometry args={[0.2, 0.2, 0.2]} />
-              <meshStandardMaterial
-                color={alert.color}
-                metalness={0.7}
-                roughness={0.2}
-                emissive={alert.color}
-                emissiveIntensity={0.3}
-              />
-            </mesh>
-            <Text
-              position={[0, 0.2, 0]}
-              fontSize={0.08}
-              color={alert.color}
-              anchorX="center"
-              anchorY="middle"
-            >
-              {alert.label}
-            </Text>
-          </group>
-        );
-      })}
-    </group>
-  );
-}
-
-// Asset Management visualization
-function WalletIcon() {
-  const group = useRef<Group>(null);
-  useFrame((state) => {
-    if (group.current) {
-      group.current.rotation.y += 0.005;
-      group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-    }
-  });
-
-  const assets = [
-    { symbol: 'BTC', color: '#FF9F43' },
-    { symbol: 'ETH', color: '#4ECDC4' },
-    { symbol: 'DOT', color: '#FF6B6B' },
-    { symbol: 'SOL', color: '#A66FFE' },
-  ];
-
-  return (
-    <group ref={group}>
-      {/* Wallet Base */}
-      <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[1.2, 0.8, 0.2]} />
-        <meshStandardMaterial
-          color="#2a2a2a"
-          metalness={0.8}
-          roughness={0.2}
-          opacity={0.9}
-          transparent
+        {/* Bell body with 3D effect */}
+        <path
+          d="M12 4C15.3137 4 18 6.68629 18 10V15L20 17H4L6 15V10C6 6.68629 8.68629 4 12 4Z"
+          fill="url(#bellGradient)"
         />
-      </mesh>
-
-      {/* Asset Cards */}
-      {assets.map((asset, i) => {
-        const offset = (i - (assets.length - 1) / 2) * 0.25;
-        return (
-          <group key={i} position={[offset, 0.1, 0.15]}>
-            <mesh>
-              <boxGeometry args={[0.2, 0.3, 0.02]} />
-              <meshStandardMaterial
-                color={asset.color}
-                metalness={0.7}
-                roughness={0.2}
-                emissive={asset.color}
-                emissiveIntensity={0.3}
-              />
-            </mesh>
-            <Text
-              position={[0, 0, 0.02]}
-              fontSize={0.08}
-              color="#ffffff"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {asset.symbol}
-            </Text>
-          </group>
-        );
-      })}
-
-      {/* Security Shield */}
-      <mesh position={[0, -0.2, 0.15]}>
-        <cylinderGeometry args={[0.15, 0.15, 0.05, 32]} />
-        <meshStandardMaterial
-          color="#FFD700"
-          metalness={0.9}
-          roughness={0.1}
-          emissive="#FFD700"
-          emissiveIntensity={0.4}
+        <path
+          d="M12 4C15.3137 4 18 6.68629 18 10V12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12V10C6 6.68629 8.68629 4 12 4Z"
+          fill="#EF4444"
+          fillOpacity="0.4"
         />
-      </mesh>
-    </group>
-  );
-}
 
-export default function FeatureIcon({ type = 'dashboard' }: FeatureIconProps) {
-  const iconComponents = {
-    dashboard: DashboardIcon,
-    transactions: TransactionsIcon,
-    market: MarketIcon,
-    ai: AIIcon,
-    alerts: AlertsIcon,
-    wallet: WalletIcon,
+        {/* Bell handle with metallic effect */}
+        <path
+          d="M10 18H14C14 19.1046 13.1046 20 12 20C10.8954 20 10 19.1046 10 18Z"
+          fill="#F87171"
+          fillOpacity="0.6"
+        />
+
+        {/* Glowing notification */}
+        <circle cx="17" cy="7" r="3" fill="#EF4444" filter="url(#bellGlow)" />
+        <circle cx="17" cy="7" r="2" fill="#FEE2E2" fillOpacity="0.6" />
+      </svg>
+    ),
+
+    wallet: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <defs>
+          <linearGradient id="walletGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10B981" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#34D399" stopOpacity="0.4" />
+          </linearGradient>
+          <linearGradient id="walletCoinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FCD34D" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.6" />
+          </linearGradient>
+          <filter id="walletGlow">
+            <feGaussianBlur stdDeviation="0.5" result="blur" />
+            <feComposite in="blur" operator="over" in2="SourceGraphic" />
+          </filter>
+        </defs>
+
+        {/* Wallet body with 3D effect */}
+        <rect x="2" y="6" width="20" height="12" rx="2" fill="url(#walletGradient)" />
+        <path
+          d="M2 8C2 6.89543 2.89543 6 4 6H20C21.1046 6 22 6.89543 22 8V10H2V8Z"
+          fill="#10B981"
+          fillOpacity="0.4"
+        />
+
+        {/* Card slot */}
+        <rect x="16" y="9" width="4" height="6" rx="1" fill="#34D399" fillOpacity="0.3" />
+
+        {/* Coins with metallic effect */}
+        <g filter="url(#walletGlow)">
+          <circle cx="7" cy="12" r="2" fill="url(#walletCoinGradient)" />
+          <path d="M7 11V13M6 12H8" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.8" />
+        </g>
+        <g filter="url(#walletGlow)" transform="translate(3 -2)">
+          <circle cx="7" cy="12" r="1.5" fill="url(#walletCoinGradient)" />
+          <path d="M7 11V13M6 12H8" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.8" />
+        </g>
+      </svg>
+    ),
   };
 
-  const IconComponent = iconComponents[type];
-
-  return (
-    <div
-      style={{
-        display: 'flex',
-        width: '100%',
-        height: '100vh',
-        maxHeight: '400px',
-      }}
-    >
-      <Canvas
-        style={{ flex: 1 }}
-        camera={{
-          position: [0, 0, 3],
-          fov: 40,
-          near: 0.1,
-          far: 1000,
-        }}
-      >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
-        <IconComponent />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          minPolarAngle={Math.PI / 4}
-          maxPolarAngle={(Math.PI * 3) / 4}
-        />
-      </Canvas>
-    </div>
-  );
+  return icons[type] || null;
 }

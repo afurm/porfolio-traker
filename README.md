@@ -2,6 +2,10 @@
 
 A modern, feature-rich cryptocurrency portfolio tracker built with Next.js, TypeScript, and cutting-edge web technologies. Track your crypto investments with real-time data, advanced analytics, and AI-powered insights.
 
+## Live Demo
+
+🚀 [View Live Demo](https://porfolio-traker.vercel.app/)
+
 ## ✨ Features
 
 ### 📊 Advanced Portfolio Dashboard
@@ -85,7 +89,7 @@ A modern, feature-rich cryptocurrency portfolio tracker built with Next.js, Type
 3. Set up environment variables:
 
    ```bash
-   cp .env.example .env
+   cp .env.example .env.local
    ```
 
    Fill in your environment variables:
@@ -102,9 +106,12 @@ A modern, feature-rich cryptocurrency portfolio tracker built with Next.js, Type
    ```
 
 5. Start the development server:
+
    ```bash
    npm run dev
    ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Running Tests
 
