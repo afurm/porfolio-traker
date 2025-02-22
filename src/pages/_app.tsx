@@ -1,22 +1,25 @@
 import type { AppProps } from 'next/app';
 import React from 'react';
 
-import { AuthProvider } from '@/context/AuthContext';
+import { QueryProvider } from '@/lib/providers/QueryProvider';
 import Layout from '@/components/Layout';
-import { createTheme, ThemeProvider } from '@mui/material';
-
-const theme = createTheme({
-});
+import { ThemeProvider } from '@/components/ThemeProvider';
+import '@/styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
+    <QueryProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </AuthProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </QueryProvider>
   );
 }
 

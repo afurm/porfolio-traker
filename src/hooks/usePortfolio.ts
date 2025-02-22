@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { firestore } from '@/firebase/firebaseConfig';
+import { firestore } from '@/lib/firebaseConfig';
 import { useAuth } from '@/hooks/useAuth';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
 import axios from 'axios';

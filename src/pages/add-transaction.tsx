@@ -1,17 +1,24 @@
-import AddCryptoForm from '@/components/AddCryptoForm';
-
-import type { NextPage } from 'next';
 import React from 'react';
+import { motion } from 'framer-motion';
+import AddCryptoForm from '@/components/AddCryptoForm';
+import { fadeIn } from '@/animations/framer';
 
-const AddTransactionPage: NextPage = () => {
+export default function AddTransaction() {
   return (
-    <>
-    <h2 > Add Transaction</h2>
-      <div>
-      <AddCryptoForm />
+    <motion.div
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+      className="space-y-6"
+    >
+      <div className="text-center">
+        <h1 className="text-3xl font-bold">Add Transaction</h1>
+        <p className="text-sm text-muted-foreground">
+          Record your cryptocurrency purchases and sales
+        </p>
       </div>
-    </>
-  );
-};
 
-export default AddTransactionPage;
+      <AddCryptoForm />
+    </motion.div>
+  );
+}

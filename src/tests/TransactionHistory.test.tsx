@@ -7,8 +7,20 @@ describe('TransactionHistory Component Snapshot Test', () => {
   it('renders correctly with transactions', () => {
     const props: TransactionHistoryProps = {
       transactions: [
-        { coinName: 'Bitcoin', amount: 2, type: 'buy', date: '2024-10-01' },
-        { coinName: 'Ethereum', amount: 5, type: 'sell', date: '2024-10-02' },
+        {
+          coinName: 'Bitcoin',
+          amount: 2,
+          transactionType: 'buy',
+          date: '2024-10-01',
+          currentPrice: 50000.00
+        },
+        {
+          coinName: 'Ethereum',
+          amount: 5,
+          transactionType: 'sell',
+          date: '2024-10-02',
+          currentPrice: 3000.00
+        },
       ],
     };
     const { asFragment } = render(<TransactionHistory {...props} />);
