@@ -6,7 +6,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Icon, type IconName } from '@/components/ui/icon';
 import { fadeIn, staggerContainer } from '@/animations/framer';
 import FeatureIcon from '@/components/3d/FeatureIcon';
-import Image from 'next/image';
 
 // Market stats data with more detailed information
 const marketStats = [
@@ -557,15 +556,6 @@ export default function Home() {
                 className="glass-card border-white/10 backdrop-blur-xl bg-white/5 p-6 rounded-xl"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="object-cover"
-                    />
-                  </div>
                   <div>
                     <h4 className="font-semibold">{testimonial.name}</h4>
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>

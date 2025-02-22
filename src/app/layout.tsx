@@ -5,6 +5,11 @@ import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const metadata = {
+  title: 'Crypto Portfolio Tracker',
+  description: 'Track and manage your crypto investments with AI-powered insights',
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
