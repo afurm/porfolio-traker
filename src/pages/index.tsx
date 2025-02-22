@@ -425,7 +425,7 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <div className="space-y-32">
+              <div className="space-y-8 md:space-y-32">
                 {detailedFeatures.map((feature, index) => (
                   <motion.div
                     key={feature.title}
@@ -473,7 +473,7 @@ export default function Home() {
                       </Button>
                     </div>
                     <div className="flex-1">
-                      <div className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-1 backdrop-blur-xl">
+                      <div className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-1 backdrop-blur-xl hidden md:block">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
                         <div className="relative h-full w-full rounded-lg bg-gray-900/80">
                           <FeatureIcon type={feature.iconType} />
