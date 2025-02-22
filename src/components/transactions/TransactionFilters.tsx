@@ -88,14 +88,14 @@ export function TransactionFilters({ onFilterChange }: TransactionFiltersProps) 
               type="number"
               placeholder="Min"
               className="bg-white/5 border-white/10 text-white placeholder-white/50 focus:border-blue-500/50 focus:ring-blue-500/25"
-              onChange={(e) => onFilterChange({ minAmount: e.target.value })}
+              onChange={(e) => onFilterChange({ minAmount: parseFloat(e.target.value) })}
             />
             <span className="text-white/60">to</span>
             <Input
               type="number"
               placeholder="Max"
               className="bg-white/5 border-white/10 text-white placeholder-white/50 focus:border-blue-500/50 focus:ring-blue-500/25"
-              onChange={(e) => onFilterChange({ maxAmount: e.target.value })}
+              onChange={(e) => onFilterChange({ maxAmount: parseFloat(e.target.value) })}
             />
           </div>
         </div>

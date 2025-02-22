@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Card,
@@ -10,10 +11,18 @@ import {
   Input,
 } from '@/components/ui';
 import { Icon } from '@/components/ui/icon';
-import { useSearchCrypto } from '@/lib/queries/useQueries';
-import { useStore } from '@/lib/store/useStore';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { fadeIn } from '@/animations/framer';
+
+interface CryptoData {
+  id: string;
+  name: string;
+  symbol: string;
+  thumb: string;
+  large: string;
+  market_cap_rank: number;
+  price_btc: number;
+}
 
 interface AddAssetModalProps {
   isOpen: boolean;
@@ -21,32 +30,18 @@ interface AddAssetModalProps {
 }
 
 export function AddAssetModal({ isOpen, onClose }: AddAssetModalProps) {
-  const [search, setSearch] = useState('');
-  const [selectedCoin, setSelectedCoin] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null);
   const [amount, setAmount] = useState('');
   const [purchasePrice, setPurchasePrice] = useState('');
-  const addAsset = useStore((state) => state.addAsset);
-
-  const { data: searchResults, isLoading } = useSearchCrypto(search);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedCoin || !amount || !purchasePrice) return;
+    if (!selectedCrypto || !amount || !purchasePrice) return;
 
-    const newAsset = {
-      id: selectedCoin.id,
-      coinName: selectedCoin.name,
-      symbol: selectedCoin.symbol.toUpperCase(),
-      amount: parseFloat(amount),
-      purchasePrice: parseFloat(purchasePrice),
-      currentPrice: parseFloat(purchasePrice), // Will be updated by real-time data
-      lastUpdated: new Date().toISOString(),
-    };
-
-    addAsset(newAsset);
     onClose();
-    setSearch('');
-    setSelectedCoin(null);
+    setSearchQuery('');
+    setSelectedCrypto(null);
     setAmount('');
     setPurchasePrice('');
   };
@@ -87,36 +82,12 @@ export function AddAssetModal({ isOpen, onClose }: AddAssetModalProps) {
                 <Input
                   type="text"
                   placeholder="Search by name or symbol..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                {search && searchResults && (
-                  <motion.div
-                    variants={fadeIn}
-                    initial="initial"
-                    animate="animate"
-                    className="mt-2 max-h-48 overflow-auto rounded-md border bg-background p-1"
-                  >
-                    {searchResults.map((coin: any) => (
-                      <Button
-                        key={coin.id}
-                        variant="ghost"
-                        className="w-full justify-start gap-2"
-                        onClick={() => {
-                          setSelectedCoin(coin);
-                          setSearch('');
-                        }}
-                      >
-                        <img src={coin.thumb} alt={coin.name} className="h-5 w-5" />
-                        <span>{coin.name}</span>
-                        <span className="text-muted-foreground">({coin.symbol.toUpperCase()})</span>
-                      </Button>
-                    ))}
-                  </motion.div>
-                )}
               </div>
 
-              {selectedCoin && (
+              {selectedCrypto && (
                 <motion.div
                   variants={fadeIn}
                   initial="initial"
@@ -124,10 +95,16 @@ export function AddAssetModal({ isOpen, onClose }: AddAssetModalProps) {
                   className="rounded-lg border p-4"
                 >
                   <div className="mb-4 flex items-center gap-2">
-                    <img src={selectedCoin.thumb} alt={selectedCoin.name} className="h-6 w-6" />
-                    <span className="font-medium">{selectedCoin.name}</span>
+                    <Image
+                      src={selectedCrypto.thumb}
+                      alt={selectedCrypto.name}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                    />
+                    <span className="font-medium">{selectedCrypto.name}</span>
                     <span className="text-muted-foreground">
-                      ({selectedCoin.symbol.toUpperCase()})
+                      ({selectedCrypto.symbol.toUpperCase()})
                     </span>
                   </div>
 
@@ -168,7 +145,7 @@ export function AddAssetModal({ isOpen, onClose }: AddAssetModalProps) {
               <Button variant="outline" onClick={onClose}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={!selectedCoin || !amount || !purchasePrice}>
+              <Button type="submit" disabled={!selectedCrypto || !amount || !purchasePrice}>
                 Add Asset
               </Button>
             </CardFooter>

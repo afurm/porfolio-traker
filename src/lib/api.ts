@@ -1,5 +1,3 @@
-import { mockTransactions } from './mock/data';
-
 export interface Transaction {
   coinId: string;
   amount: number;

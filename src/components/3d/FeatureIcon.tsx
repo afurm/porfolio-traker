@@ -1,70 +1,11 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useSpring, animated } from '@react-spring/three';
-import { OrbitControls, PerspectiveCamera, Text } from '@react-three/drei';
+import { OrbitControls, Text } from '@react-three/drei';
 import * as THREE from 'three';
-import { Group, Vector3, Euler } from 'three';
+import { Group, Vector3 } from 'three';
 
 interface FeatureIconProps {
   type?: 'dashboard' | 'transactions' | 'market' | 'ai' | 'alerts' | 'wallet';
-}
-
-// Create a mesh with proper transformations
-function TransformedMesh({
-  position,
-  rotation,
-  geometry,
-  material,
-}: {
-  position: [number, number, number];
-  rotation: [number, number, number];
-  geometry: JSX.Element;
-  material: JSX.Element;
-}) {
-  return (
-    <mesh position={position} rotation={rotation}>
-      {geometry}
-      {material}
-    </mesh>
-  );
-}
-
-// Create a cylinder with proper transformations
-function TransformedCylinder({
-  radius,
-  height,
-  segments = 32,
-  position,
-  rotation,
-  color,
-  metalness = 0.7,
-  roughness = 0.2,
-  emissive,
-  emissiveIntensity = 0.3,
-}: {
-  radius: number;
-  height: number;
-  segments?: number;
-  position: [number, number, number];
-  rotation: [number, number, number];
-  color: string;
-  metalness?: number;
-  roughness?: number;
-  emissive?: string;
-  emissiveIntensity?: number;
-}) {
-  return (
-    <mesh position={position} rotation={rotation}>
-      <cylinderGeometry args={[radius, radius, height, segments]} />
-      <meshStandardMaterial
-        color={color}
-        metalness={metalness}
-        roughness={roughness}
-        emissive={emissive || color}
-        emissiveIntensity={emissiveIntensity}
-      />
-    </mesh>
-  );
 }
 
 // Helper function to create a Vector3
@@ -80,7 +21,7 @@ function createEuler(x: number, y: number, z: number): THREE.Euler {
 // Advanced Portfolio Dashboard visualization
 function DashboardIcon() {
   const group = useRef<Group>(null);
-  useFrame((state) => {
+  useFrame(() => {
     if (group.current) {
       group.current.rotation.y += 0.005;
     }
@@ -136,7 +77,6 @@ function DashboardIcon() {
       <group position={charts[1].position}>
         {charts[1].data.map((value, i, arr) => {
           if (i < arr.length - 1) {
-            const rotation = createEuler(0, 0, Math.atan2(arr[i + 1] - value, 0.2));
             return (
               <mesh key={i} position={[i * 0.2 - 0.3, (value + arr[i + 1]) / 2, 0]}>
                 <cylinderGeometry
@@ -199,7 +139,7 @@ function DashboardIcon() {
 // Smart Transaction Management visualization
 function TransactionsIcon() {
   const group = useRef<Group>(null);
-  useFrame((state) => {
+  useFrame(() => {
     if (group.current) {
       group.current.rotation.y += 0.005;
     }
@@ -280,7 +220,7 @@ function TransactionsIcon() {
 // Market Intelligence visualization
 function MarketIcon() {
   const group = useRef<Group>(null);
-  useFrame((state) => {
+  useFrame(() => {
     if (group.current) {
       group.current.rotation.y += 0.005;
     }
@@ -604,16 +544,6 @@ function WalletIcon() {
       </mesh>
     </group>
   );
-}
-
-// Helper function to create rotation vector
-function createRotation(x: number, y: number, z: number): [number, number, number] {
-  return [x, y, z];
-}
-
-// Helper function to create position vector
-function createPosition(x: number, y: number, z: number): [number, number, number] {
-  return [x, y, z];
 }
 
 export default function FeatureIcon({ type = 'dashboard' }: FeatureIconProps) {

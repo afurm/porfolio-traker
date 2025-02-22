@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { NavBar } from '@/components/ui/navigation/NavBar';
-import { MobileNav } from '@/components/ui/navigation/MobileNav';
 import { fadeIn } from '@/animations/framer';
 
 interface AppLayoutProps {
@@ -11,8 +9,6 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="relative min-h-screen bg-background">
-      <NavBar />
-      <MobileNav />
       <motion.main variants={fadeIn} initial="initial" animate="animate" className="container py-8">
         {children}
       </motion.main>

@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Icon } from '@/components/ui/icon';
-import { Loading } from '@/components/ui/loading';
 import { MarketStats } from '@/components/market/MarketStats';
 import { MarketTrends } from '@/components/market/MarketTrends';
-import { fadeIn, staggerContainer, listItem } from '@/animations/framer';
-import { useSearchCrypto } from '@/lib/queries/useQueries';
+import { fadeIn, staggerContainer } from '@/animations/framer';
 
 export default function MarketPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: searchResults, isLoading } = useSearchCrypto(searchQuery);
 
   // Mock data for demonstration
   const marketStats = {
@@ -168,39 +165,6 @@ export default function MarketPage() {
 
                 <div className="relative p-6">
                   <h2 className="text-xl font-semibold text-white mb-4">Search Results</h2>
-                  {isLoading ? (
-                    <Loading />
-                  ) : (
-                    <motion.div
-                      variants={staggerContainer}
-                      initial="initial"
-                      animate="animate"
-                      className="space-y-3"
-                    >
-                      {searchResults?.map((coin: any) => (
-                        <motion.div
-                          key={coin.id}
-                          variants={listItem}
-                          className="flex items-center justify-between rounded-lg bg-white/5 p-4 transition-colors hover:bg-white/10"
-                        >
-                          <div className="flex items-center gap-3">
-                            <img
-                              src={coin.thumb}
-                              alt={coin.name}
-                              className="h-8 w-8 rounded-full bg-white/10 p-1"
-                            />
-                            <div>
-                              <p className="font-medium text-white">{coin.name}</p>
-                              <p className="text-sm text-white/60">{coin.symbol.toUpperCase()}</p>
-                            </div>
-                          </div>
-                          <button className="rounded-lg bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors">
-                            View Details
-                          </button>
-                        </motion.div>
-                      ))}
-                    </motion.div>
-                  )}
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
 import { Icon } from '@/components/ui/icon';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { staggerContainer, listItem } from '@/animations/framer';

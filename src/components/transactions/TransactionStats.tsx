@@ -79,7 +79,10 @@ export function TransactionStats({
           <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
           <div className="relative p-4 space-y-2">
             <div className="flex items-center gap-2 text-white/80">
-              <Icon name={stat.icon} className={`h-5 w-5 ${stat.color}`} />
+              <Icon
+                name={stat.icon as 'LineChart' | 'ArrowDownRight' | 'ArrowUpRight' | 'Calculator'}
+                className={`h-5 w-5 ${stat.color}`}
+              />
               <span className="text-sm font-medium">{stat.title}</span>
             </div>
             <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>

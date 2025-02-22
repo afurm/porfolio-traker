@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { fadeIn, staggerContainer } from '@/animations/framer';
@@ -40,20 +39,20 @@ const mockInsightsData = {
 
 const mockMarketData = {
   trends: [
-    { indicator: 'RSI', value: 65, signal: 'neutral' },
-    { indicator: 'MACD', value: 0.025, signal: 'bullish' },
-    { indicator: 'MA', value: 45000, signal: 'bearish' },
+    { indicator: 'RSI', value: 65, signal: 'bullish' as const },
+    { indicator: 'MACD', value: 0.5, signal: 'neutral' as const },
+    { indicator: 'Moving Average', value: -2.1, signal: 'bearish' as const },
   ],
   sentiment: {
-    overall: 'bullish',
-    fear: 65,
-    social: 78,
-    news: 82,
+    overall: 'positive',
+    fear: 45,
+    social: 72,
+    news: 65,
   },
   predictions: [
-    { timeframe: '1D', value: 52000, confidence: 0.85 },
-    { timeframe: '1W', value: 55000, confidence: 0.75 },
-    { timeframe: '1M', value: 58000, confidence: 0.65 },
+    { timeframe: '24h', value: 52000, confidence: 0.85 },
+    { timeframe: '7d', value: 55000, confidence: 0.75 },
+    { timeframe: '30d', value: 60000, confidence: 0.65 },
   ],
 };
 
@@ -117,41 +116,28 @@ export default function AnalyticsPage() {
           </div>
         </motion.div>
 
-        {/* Grid Background */}
-        <div className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-        {/* Glowing orbs in the background */}
-        <div className="fixed -z-10 h-[200px] w-[200px] rounded-full bg-purple-500/20 blur-[100px] top-24 left-0"></div>
-        <div className="fixed -z-10 h-[300px] w-[300px] rounded-full bg-blue-500/20 blur-[100px] bottom-0 right-0"></div>
-
-        {/* Components with enhanced 3D effects */}
+        {/* Performance Metrics */}
         <motion.div
-          className="space-y-8"
-          style={{
-            perspective: '1000px',
-            transformStyle: 'preserve-3d',
-          }}
+          whileHover={{ transform: 'translateZ(10px)' }}
+          transition={{ type: 'spring', stiffness: 300 }}
         >
-          <motion.div
-            whileHover={{ transform: 'translateZ(10px)' }}
-            transition={{ type: 'spring', stiffness: 200 }}
-          >
-            <PerformanceMetrics data={mockPerformanceData} />
-          </motion.div>
+          <PerformanceMetrics data={mockPerformanceData} />
+        </motion.div>
 
-          <motion.div
-            whileHover={{ transform: 'translateZ(10px)' }}
-            transition={{ type: 'spring', stiffness: 200 }}
-          >
-            <PortfolioInsights data={mockInsightsData} />
-          </motion.div>
+        {/* Portfolio Insights */}
+        <motion.div
+          whileHover={{ transform: 'translateZ(10px)' }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
+          <PortfolioInsights data={mockInsightsData} />
+        </motion.div>
 
-          <motion.div
-            whileHover={{ transform: 'translateZ(10px)' }}
-            transition={{ type: 'spring', stiffness: 200 }}
-          >
-            <MarketAnalysis data={mockMarketData as any} />
-          </motion.div>
+        {/* Market Analysis */}
+        <motion.div
+          whileHover={{ transform: 'translateZ(10px)' }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
+          <MarketAnalysis data={mockMarketData} />
         </motion.div>
       </motion.div>
     </div>

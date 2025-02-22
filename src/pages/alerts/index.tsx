@@ -3,10 +3,9 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { fadeIn, staggerContainer, listItem } from '@/animations/framer';
-import { Alert } from '@/lib/schemas';
 
 // Mock data for demonstration
-const mockAlerts: Alert[] = [
+const mockAlerts = [
   {
     id: '1',
     userId: 'user1',

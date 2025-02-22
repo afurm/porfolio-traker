@@ -14,7 +14,6 @@ import {
 } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
 import { Button } from '@/components/ui';
-import { Icon } from '@/components/ui/icon';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { fadeIn, scaleIn } from '@/animations/framer';
 

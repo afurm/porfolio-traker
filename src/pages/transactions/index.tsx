@@ -5,30 +5,38 @@ import { TransactionStats } from '@/components/transactions/TransactionStats';
 import { TransactionTable } from '@/components/transactions/TransactionTable';
 import { fadeIn } from '@/animations/framer';
 
+interface FilterOptions {
+  startDate?: string;
+  endDate?: string;
+  type?: 'buy' | 'sell';
+  asset?: string;
+  minAmount?: number;
+  maxAmount?: number;
+}
+
 // Mock data - replace with real data from your API
 const mockTransactions = [
   {
     id: '1',
     date: '2024-03-20',
-    type: 'buy',
+    type: 'buy' as const,
     asset: 'BTC',
     amount: 0.5,
     price: 65000,
     total: 32500,
-    status: 'completed',
+    status: 'completed' as const,
   },
   {
     id: '2',
     date: '2024-03-19',
-    type: 'sell',
+    type: 'sell' as const,
     asset: 'ETH',
     amount: 2.5,
     price: 3500,
     total: 8750,
-    status: 'completed',
+    status: 'completed' as const,
   },
-  // Add more mock transactions as needed
-] as const;
+];
 
 const mockStats = {
   totalTransactions: 150,
@@ -41,7 +49,7 @@ const mockStats = {
 export default function TransactionsPage() {
   const [transactions] = useState(mockTransactions);
 
-  const handleFilterChange = (filters: any) => {
+  const handleFilterChange = (filters: FilterOptions) => {
     // Implement filter logic here
     console.log('Filters changed:', filters);
   };

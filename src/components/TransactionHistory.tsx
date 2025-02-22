@@ -26,7 +26,8 @@ const TransactionRow = styled(Paper)(({ theme }) => ({
   transition: 'background-color 0.2s ease',
   cursor: 'pointer',
   '&:hover': {
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.action.hover : theme.palette.grey[100],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.action.hover : theme.palette.grey[100],
   },
 }));
 

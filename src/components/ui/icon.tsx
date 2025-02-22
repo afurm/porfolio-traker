@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import * as LucideIcons from 'lucide-react';
+import type { LucideIcon as LucideIconType } from 'lucide-react';
 
 export type IconName = keyof typeof LucideIcons;
 
@@ -18,7 +19,7 @@ const sizeMap = {
 };
 
 export function Icon({ name, size = 'md', className, ...props }: IconProps) {
-  const LucideIcon = LucideIcons[name];
+  const LucideIcon = LucideIcons[name] as LucideIconType;
   const iconSize = typeof size === 'string' ? sizeMap[size as keyof typeof sizeMap] || 20 : size;
 
   return (

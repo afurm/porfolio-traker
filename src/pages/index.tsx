@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icon, type IconName } from '@/components/ui/icon';
-import { fadeIn, staggerContainer, listItem } from '@/animations/framer';
+import { fadeIn, staggerContainer } from '@/animations/framer';
 import FeatureIcon from '@/components/3d/FeatureIcon';
+import Image from 'next/image';
 
 // Market stats data with more detailed information
 const marketStats = [
@@ -179,35 +180,6 @@ const features = [
     icon: 'BarChart2',
     gradient: 'from-green-500 to-green-600',
     benefits: ['Technical indicators', 'Social sentiment', 'News analysis'],
-  },
-];
-
-// How it works steps
-interface Step {
-  title: string;
-  description: string;
-  icon: IconName;
-  gradient: string;
-}
-
-const steps: Step[] = [
-  {
-    title: 'Create Account',
-    description: 'Sign up in seconds with just your email',
-    icon: 'UserPlus',
-    gradient: 'from-blue-500 to-blue-600',
-  },
-  {
-    title: 'Add Portfolio',
-    description: 'Import or manually add your crypto assets',
-    icon: 'Wallet',
-    gradient: 'from-purple-500 to-purple-600',
-  },
-  {
-    title: 'Track & Analyze',
-    description: 'Monitor performance and get insights',
-    icon: 'BarChart2',
-    gradient: 'from-green-500 to-green-600',
   },
 ];
 
@@ -586,7 +558,13 @@ export default function Home() {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                    <img src={testimonial.image} alt={testimonial.name} className="object-cover" />
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      width={48}
+                      height={48}
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <h4 className="font-semibold">{testimonial.name}</h4>
