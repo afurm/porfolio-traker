@@ -39,7 +39,19 @@ exports[`TransactionHistory Component Snapshot Test renders correctly with trans
               class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1t7lzbz-MuiTableCell-root"
               scope="col"
             >
-              Type
+              Transaction Type
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1t7lzbz-MuiTableCell-root"
+              scope="col"
+            >
+              Transaction Price (USD)
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1t7lzbz-MuiTableCell-root"
+              scope="col"
+            >
+              Current Price (USD)
             </th>
             <th
               class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1t7lzbz-MuiTableCell-root"
@@ -77,7 +89,17 @@ exports[`TransactionHistory Component Snapshot Test renders correctly with trans
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-10ukr6t-MuiTableCell-root"
             >
-              2024-10-01
+              $50000.00
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-10ukr6t-MuiTableCell-root"
+            >
+              N/A
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-10ukr6t-MuiTableCell-root"
+            >
+              10/1/2024, 3:00:00 AM
             </td>
           </tr>
           <tr
@@ -105,7 +127,17 @@ exports[`TransactionHistory Component Snapshot Test renders correctly with trans
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-10ukr6t-MuiTableCell-root"
             >
-              2024-10-02
+              $3000.00
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-10ukr6t-MuiTableCell-root"
+            >
+              N/A
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-10ukr6t-MuiTableCell-root"
+            >
+              10/2/2024, 3:00:00 AM
             </td>
           </tr>
         </tbody>

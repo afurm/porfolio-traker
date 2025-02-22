@@ -1,20 +1,17 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import { Box } from '@mui/material';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+export default function Layout({ children }: LayoutProps) {
   return (
-    <Box display="flex">
-      <Sidebar />
-      <Box component="main" flex={1} p={4}>
-        {children}
-      </Box>
-    </Box>
+    <div className="min-h-screen bg-background">
+      <main className="flex-1">
+        <div className="container mx-auto py-6 px-4">
+          {children}
+        </div>
+      </main>
+    </div>
   );
-};
-
-export default Layout;
+}

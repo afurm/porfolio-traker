@@ -1,33 +1,41 @@
-import TransactionHistory, { Transaction } from '@/components/TransactionHistory';
-import { useAuth } from '@/context/AuthContext';
-import { getTransactions } from '@/lib/firebaseUtils';
-import type { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Icon } from '@/components/ui/icon';
+import TransactionList from '@/components/TransactionList';
+import { Button } from '@/components/ui/button';
+import { fadeIn } from '@/animations/framer';
 
-const TransactionHistoryPage: NextPage = () => {
-
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const { user } = useAuth();
-
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      if (user) {
-        const fetchedTransactions = await getTransactions(user.uid);
-        setTransactions(fetchedTransactions);
-      }
-    };
-
-    fetchTransactions();
-  }, [user]);
-  
+export default function TransactionHistory() {
   return (
-    <>
-    <h2 >Transaction History</h2>
-      <div>
-      <TransactionHistory transactions={transactions}/>
-      </div>
-    </>
-  );
-};
+    <motion.div
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+      className="space-y-6"
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">Transaction History</h1>
+          <p className="text-sm text-muted-foreground">
+            Track all your cryptocurrency transactions
+          </p>
+        </div>
 
-export default TransactionHistoryPage;
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" className="gap-2">
+            <Icon name="Filter" className="h-4 w-4" />
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" className="gap-2">
+            <Icon name="Download" className="h-4 w-4" />
+            Export
+          </Button>
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-border/50 bg-background/95 backdrop-blur p-6 supports-[backdrop-filter]:bg-background/60">
+        <TransactionList />
+      </div>
+    </motion.div>
+  );
+}
