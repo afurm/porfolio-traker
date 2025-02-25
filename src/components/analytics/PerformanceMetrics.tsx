@@ -88,8 +88,8 @@ export function PerformanceMetrics({ data }: PerformanceMetricsProps) {
 
   return (
     <motion.div variants={fadeIn}>
-      <Card className="backdrop-blur-md bg-white/5 border-white/10 shadow-2xl">
-        <CardHeader className="border-b border-white/10">
+      <Card className="backdrop-blur-md bg-card/50 border-border shadow-lg">
+        <CardHeader className="border-b border-border">
           <CardTitle className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
             Performance Metrics
           </CardTitle>
@@ -106,15 +106,15 @@ export function PerformanceMetrics({ data }: PerformanceMetricsProps) {
                   scale: 1.02,
                   transition: { type: 'spring', stiffness: 300 },
                 }}
-                className={`relative overflow-hidden rounded-xl backdrop-blur-md bg-gradient-to-br ${metric.gradient} p-4 border border-white/10 shadow-lg`}
+                className={`relative overflow-hidden rounded-xl backdrop-blur-md bg-gradient-to-br ${metric.gradient} p-4 border border-border shadow-lg`}
               >
                 <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-white/80">{metric.title}</span>
+                  <span className="text-sm font-medium text-foreground/80">{metric.title}</span>
                   <Icon name={metric.icon} className={`h-5 w-5 ${metric.color}`} />
                 </div>
                 <div className={`text-2xl font-bold ${metric.color}`}>{metric.value}</div>
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
               </motion.div>
             ))}
           </div>

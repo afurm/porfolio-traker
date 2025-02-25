@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon, type IconName } from '@/components/ui/icon';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -66,7 +67,28 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     <span>{item.label}</span>
                   </Link>
                 ))}
+
+                {/* Settings link */}
+                <Link
+                  href="/settings"
+                  onClick={onClose}
+                  className={cn(
+                    'flex items-center space-x-2 text-sm font-medium transition-colors hover:text-foreground/80',
+                    router.pathname === '/settings' ? 'text-foreground' : 'text-foreground/60'
+                  )}
+                >
+                  <Icon name="Settings" className="h-5 w-5" />
+                  <span>Settings</span>
+                </Link>
               </nav>
+
+              {/* Theme toggle in mobile menu */}
+              <div className="mt-auto pt-4 border-t border-border/40">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-foreground/60">Theme</span>
+                  <ThemeToggle />
+                </div>
+              </div>
             </div>
           </motion.div>
         </>

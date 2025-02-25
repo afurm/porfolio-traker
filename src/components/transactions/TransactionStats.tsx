@@ -74,11 +74,11 @@ export function TransactionStats({
             scale: 1.02,
             transition: { type: 'spring', stiffness: 300 },
           }}
-          className={`relative overflow-hidden rounded-xl backdrop-blur-md bg-gradient-to-br ${stat.gradient} border border-white/10 shadow-2xl`}
+          className={`relative overflow-hidden rounded-xl backdrop-blur-md bg-gradient-to-br ${stat.gradient} border border-border shadow-lg`}
         >
           <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
           <div className="relative p-4 space-y-2">
-            <div className="flex items-center gap-2 text-white/80">
+            <div className="flex items-center gap-2 text-foreground/80">
               <Icon
                 name={stat.icon as 'LineChart' | 'ArrowDownRight' | 'ArrowUpRight' | 'Calculator'}
                 className={`h-5 w-5 ${stat.color}`}
@@ -86,7 +86,7 @@ export function TransactionStats({
               <span className="text-sm font-medium">{stat.title}</span>
             </div>
             <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
           </div>
         </motion.div>
       ))}

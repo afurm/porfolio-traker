@@ -4,7 +4,7 @@ import { fadeIn } from '@/animations/framer';
 
 export default function SettingsPage() {
   return (
-    <div className="relative min-h-screen bg-[#0d1117]">
+    <div className="relative min-h-screen bg-background">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
@@ -25,10 +25,10 @@ export default function SettingsPage() {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+          <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
             Settings
           </h1>
-          <p className="text-gray-400 mt-2">Customize your Crypto Portfolio experience</p>
+          <p className="text-muted-foreground mt-2">Customize your Crypto Portfolio experience</p>
         </motion.div>
       </motion.div>
     </div>

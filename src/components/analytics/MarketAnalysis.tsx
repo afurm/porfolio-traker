@@ -51,20 +51,20 @@ export function MarketAnalysis({ data }: MarketAnalysisProps) {
   return (
     <motion.div variants={fadeIn} className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Market Trends */}
-      <Card className="bg-[#1a1f2d] border-gray-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-lg text-white">Market Trends</CardTitle>
+          <CardTitle className="text-lg text-foreground">Market Trends</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {data.trends.map((trend) => (
               <div
                 key={trend.indicator}
-                className="flex items-center justify-between p-2 bg-[#1e2433] rounded-lg"
+                className="flex items-center justify-between p-2 bg-accent rounded-lg"
               >
-                <span className="text-gray-400">{trend.indicator}</span>
+                <span className="text-muted-foreground">{trend.indicator}</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-white">{trend.value}</span>
+                  <span className="text-foreground">{trend.value}</span>
                   <Icon
                     name={
                       trend.signal === 'bullish'
@@ -83,9 +83,9 @@ export function MarketAnalysis({ data }: MarketAnalysisProps) {
       </Card>
 
       {/* Market Sentiment */}
-      <Card className="bg-[#1a1f2d] border-gray-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-lg text-white">Market Sentiment</CardTitle>
+          <CardTitle className="text-lg text-foreground">Market Sentiment</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
@@ -93,7 +93,7 @@ export function MarketAnalysis({ data }: MarketAnalysisProps) {
               <div className="text-2xl font-bold capitalize text-blue-500">
                 {data.sentiment.overall}
               </div>
-              <div className="text-sm text-gray-400">Overall Sentiment</div>
+              <div className="text-sm text-muted-foreground">Overall Sentiment</div>
             </div>
             <div className="space-y-4">
               {Object.entries(data.sentiment)
@@ -101,10 +101,10 @@ export function MarketAnalysis({ data }: MarketAnalysisProps) {
                 .map(([key, value]) => (
                   <div key={key} className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400 capitalize">{key}</span>
-                      <span className="text-white">{value}/100</span>
+                      <span className="text-muted-foreground capitalize">{key}</span>
+                      <span className="text-foreground">{value}/100</span>
                     </div>
-                    <div className="h-2 bg-[#242937] rounded-full overflow-hidden">
+                    <div className="h-2 bg-accent rounded-full overflow-hidden">
                       <div
                         className="h-full bg-blue-500 rounded-full"
                         style={{ width: `${value}%` }}
@@ -118,26 +118,26 @@ export function MarketAnalysis({ data }: MarketAnalysisProps) {
       </Card>
 
       {/* Price Predictions */}
-      <Card className="bg-[#1a1f2d] border-gray-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-lg text-white">Price Predictions</CardTitle>
+          <CardTitle className="text-lg text-foreground">Price Predictions</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {data.predictions.map((prediction) => (
-              <div key={prediction.timeframe} className="p-3 bg-[#1e2433] rounded-lg space-y-2">
+              <div key={prediction.timeframe} className="p-3 bg-accent rounded-lg space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">{prediction.timeframe}</span>
-                  <span className="text-white">{formatCurrency(prediction.value)}</span>
+                  <span className="text-muted-foreground">{prediction.timeframe}</span>
+                  <span className="text-foreground">{formatCurrency(prediction.value)}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 h-2 bg-[#242937] rounded-full overflow-hidden">
+                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                     <div
                       className="h-full bg-purple-500 rounded-full"
                       style={{ width: `${prediction.confidence * 100}%` }}
                     />
                   </div>
-                  <span className="text-sm text-gray-400">
+                  <span className="text-sm text-muted-foreground">
                     {(prediction.confidence * 100).toFixed(0)}% confidence
                   </span>
                 </div>

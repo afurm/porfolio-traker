@@ -16,7 +16,7 @@ export default function AssetsPage() {
   const [selectedFilter, setSelectedFilter] = useState<(typeof filters)[number]['id']>('all');
 
   return (
-    <div className="relative min-h-screen bg-[#0d1117]">
+    <div className="relative min-h-screen bg-background">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
@@ -37,10 +37,12 @@ export default function AssetsPage() {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+          <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
             Assets Overview
           </h1>
-          <p className="text-gray-400 mt-2">Track and manage your cryptocurrency portfolio</p>
+          <p className="text-muted-foreground mt-2">
+            Track and manage your cryptocurrency portfolio
+          </p>
         </motion.div>
 
         {/* Search and Filters */}
@@ -57,11 +59,11 @@ export default function AssetsPage() {
                 placeholder="Search assets..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 border-white/10 text-white placeholder-white/50 focus:border-blue-500/50 focus:ring-blue-500/25"
+                className="w-full bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
               />
               <Icon
                 name="Search"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 size="sm"
               />
             </div>
@@ -74,7 +76,7 @@ export default function AssetsPage() {
                   className={`backdrop-blur-sm ${
                     selectedFilter === filter.id
                       ? 'bg-blue-500/20 border-blue-500/50'
-                      : 'bg-white/5 border-white/10 hover:bg-white/10'
+                      : 'bg-background/50 border-border hover:bg-background/70'
                   }`}
                 >
                   {filter.label}

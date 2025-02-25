@@ -7,7 +7,7 @@ import { MobileNav } from '@/components/layouts/MobileNav';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/', label: 'Dashboard', icon: 'LayoutDashboard' as IconName },
+  { href: '/', label: 'Home', icon: 'LayoutDashboard' as IconName },
   { href: '/portfolio', label: 'Portfolio', icon: 'PieChart' as IconName },
   { href: '/transactions', label: 'Transactions', icon: 'ArrowLeftRight' as IconName },
   { href: '/market', label: 'Market', icon: 'LineChart' as IconName },
@@ -46,11 +46,13 @@ export function Header() {
             </nav>
 
             <div className="flex items-center space-x-2">
-              <ThemeToggle />
+              <div className="hidden md:block">
+                <ThemeToggle />
+              </div>
               <Link
                 href="/settings"
                 className={cn(
-                  'flex items-center text-sm font-medium transition-colors hover:text-foreground/80',
+                  'hidden md:flex items-center text-sm font-medium transition-colors hover:text-foreground/80',
                   router.pathname === '/settings' ? 'text-foreground' : 'text-foreground/60'
                 )}
               >

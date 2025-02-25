@@ -307,7 +307,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="glass-card bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+                className="glass-card bg-gradient-to-r from-blue-500 to-purple-500 text-foreground shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
               >
                 <Link href="/portfolio" className="flex items-center gap-2">
                   Start Trading Now
@@ -317,7 +317,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="glass-card border-white/10 hover:bg-white/5 transform hover:scale-105"
+                className="glass-card border-border hover:bg-background/5 transform hover:scale-105"
               >
                 <Link href="/features" className="flex items-center gap-2">
                   Explore Features
@@ -335,7 +335,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, rotateY: 10 }}
                 className="transform transition-all duration-300"
               >
-                <Card className="glass-card border-white/10 backdrop-blur-xl bg-white/5 overflow-hidden">
+                <Card className="glass-card border-border backdrop-blur-xl bg-background/5 overflow-hidden">
                   <CardContent className="p-6">
                     <h3 className="text-sm text-muted-foreground mb-2">{stat.label}</h3>
                     <div className="flex items-center justify-between">
@@ -360,7 +360,7 @@ export default function Home() {
 
           {/* Enhanced Top Cryptocurrencies */}
           <motion.div variants={fadeIn} className="mb-16">
-            <Card className="glass-card border-white/10 backdrop-blur-xl bg-white/5">
+            <Card className="glass-card border-border backdrop-blur-xl bg-background/5">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold">Top Cryptocurrencies</h2>
@@ -373,7 +373,7 @@ export default function Home() {
                     <motion.div
                       key={crypto.symbol}
                       whileHover={{ scale: 1.02 }}
-                      className="flex items-center justify-between p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                      className="flex items-center justify-between p-4 rounded-lg bg-background/5 hover:bg-background/10 transition-colors"
                     >
                       <div className="flex items-center gap-3">
                         <Icon name="CircleDollarSign" className="h-8 w-8" />
@@ -457,7 +457,7 @@ export default function Home() {
                       </ul>
                       <Button
                         size="lg"
-                        className="mt-6 text-white shadow-lg transition-all duration-300"
+                        className="mt-6 text-foreground shadow-lg transition-all duration-300"
                         style={
                           {
                             background: `linear-gradient(to right, ${feature.color}, ${feature.color}dd)`,
@@ -472,8 +472,8 @@ export default function Home() {
                       </Button>
                     </div>
                     <div className="flex-1">
-                      <div className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-1 backdrop-blur-xl hidden md:block">
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
+                      <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-gradient-to-br from-background/5 to-background/0 p-1 backdrop-blur-xl hidden md:block">
+                        <div className="absolute inset-0 bg-gradient-to-br from-background/5 to-transparent" />
                         <div className="relative h-full w-full rounded-lg bg-gray-900/80">
                           <FeatureIcon type={feature.iconType} />
                         </div>
@@ -493,12 +493,12 @@ export default function Home() {
                 whileHover={{ scale: 1.05, rotateY: 5 }}
                 className="transform transition-all duration-300"
               >
-                <Card className="glass-card border-white/10 backdrop-blur-xl bg-white/5 h-full">
+                <Card className="glass-card border-border backdrop-blur-xl bg-background/5 h-full">
                   <CardContent className="p-6">
                     <div
                       className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.gradient} mb-4`}
                     >
-                      <Icon name={feature.icon as IconName} className="h-6 w-6 text-white" />
+                      <Icon name={feature.icon as IconName} className="h-6 w-6 text-foreground" />
                     </div>
                     <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                     <p className="text-muted-foreground mb-4">{feature.description}</p>
@@ -518,7 +518,7 @@ export default function Home() {
 
           {/* Enhanced CTA Section */}
           <motion.div variants={fadeIn} className="text-center">
-            <Card className="glass-card border-white/10 backdrop-blur-xl bg-white/5">
+            <Card className="glass-card border-border backdrop-blur-xl bg-background/5">
               <CardContent className="p-12">
                 <motion.div whileHover={{ scale: 1.02 }} className="max-w-2xl mx-auto">
                   <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Trading?</h2>
@@ -528,7 +528,7 @@ export default function Home() {
                   </p>
                   <Button
                     size="lg"
-                    className="glass-card bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                    className="glass-card bg-gradient-to-r from-blue-500 to-purple-500 text-foreground shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]"
                   >
                     <Link href="/portfolio" className="flex items-center gap-2">
                       Get Started Now
@@ -553,7 +553,7 @@ export default function Home() {
               <motion.div
                 key={testimonial.name}
                 whileHover={{ scale: 1.05 }}
-                className="glass-card border-white/10 backdrop-blur-xl bg-white/5 p-6 rounded-xl"
+                className="glass-card border-border backdrop-blur-xl bg-background/5 p-6 rounded-xl"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div>
@@ -584,7 +584,7 @@ export default function Home() {
               <motion.div
                 key={plan.name}
                 whileHover={{ scale: 1.05 }}
-                className="glass-card border-white/10 backdrop-blur-xl bg-white/5 p-8 rounded-xl"
+                className="glass-card border-border backdrop-blur-xl bg-background/5 p-8 rounded-xl"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <Icon name={plan.icon as IconName} className="h-8 w-8 text-blue-500" />
@@ -625,7 +625,7 @@ export default function Home() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.02 }}
-                className="glass-card border-white/10 backdrop-blur-xl bg-white/5 p-6 rounded-xl"
+                className="glass-card border-border backdrop-blur-xl bg-background/5 p-6 rounded-xl"
               >
                 <h3 className="text-lg font-semibold mb-2">{item.question}</h3>
                 <p className="text-muted-foreground">{item.answer}</p>

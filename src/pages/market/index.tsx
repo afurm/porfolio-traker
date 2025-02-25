@@ -75,7 +75,7 @@ export default function MarketPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0d1117]">
+    <div className="relative min-h-screen bg-background">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
@@ -96,10 +96,12 @@ export default function MarketPage() {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+          <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
             Market Data
           </h1>
-          <p className="text-gray-400 mt-2">Real-time cryptocurrency prices and market trends</p>
+          <p className="text-muted-foreground mt-2">
+            Real-time cryptocurrency prices and market trends
+          </p>
         </motion.div>
 
         <motion.div
@@ -113,7 +115,7 @@ export default function MarketPage() {
             <motion.div
               whileHover={{ transform: 'translateZ(10px)' }}
               transition={{ type: 'spring', stiffness: 200 }}
-              className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl p-4"
+              className="relative overflow-hidden rounded-xl backdrop-blur-md bg-card/50 border border-border shadow-lg p-4"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
               <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
@@ -123,14 +125,14 @@ export default function MarketPage() {
                     placeholder="Search cryptocurrencies..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-white/5 border-white/10 text-white placeholder-white/50 focus:border-blue-500/50 focus:ring-blue-500/25"
+                    className="w-full bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
                   />
                   <Icon
                     name="Search"
-                    className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+                    className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
                   />
                 </div>
-                <button className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/80 hover:bg-white/10 hover:text-white transition-colors">
+                <button className="flex h-10 w-10 items-center justify-center rounded-lg bg-background/50 text-foreground/80 hover:bg-accent hover:text-foreground transition-colors">
                   <Icon name="SlidersHorizontal" className="h-4 w-4" />
                 </button>
               </div>
@@ -158,16 +160,16 @@ export default function MarketPage() {
                 variants={fadeIn}
                 whileHover={{ transform: 'translateZ(10px)' }}
                 transition={{ type: 'spring', stiffness: 200 }}
-                className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl"
+                className="relative overflow-hidden rounded-xl backdrop-blur-md bg-card/50 border border-border shadow-lg"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5" />
                 <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
 
                 <div className="relative p-6">
-                  <h2 className="text-xl font-semibold text-white mb-4">Search Results</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Search Results</h2>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
               </motion.div>
             )}
           </div>

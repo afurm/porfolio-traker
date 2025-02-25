@@ -58,12 +58,19 @@ const mockMarketData = {
 
 export default function AnalyticsPage() {
   return (
-    <div className="min-h-screen bg-[#0d1117] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
+    <div className="relative min-h-screen bg-background">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 h-64 w-64 -translate-y-1/2 rounded-full bg-purple-500/10 blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 h-80 w-80 rounded-full bg-green-500/10 blur-3xl" />
+      </div>
+
       <motion.div
         variants={staggerContainer}
         initial="initial"
         animate="animate"
-        className="container mx-auto py-8 space-y-8"
+        className="relative container mx-auto py-8 px-4 space-y-8"
       >
         {/* Header with 3D effect */}
         <motion.div
@@ -78,10 +85,10 @@ export default function AnalyticsPage() {
             whileHover={{ transform: 'translateZ(20px)' }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            <h1 className="text-4xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+            <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
               Analytics
             </h1>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-muted-foreground mt-2">
               Advanced portfolio analysis and market insights
             </p>
           </motion.div>
@@ -94,7 +101,7 @@ export default function AnalyticsPage() {
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-2 backdrop-blur-sm bg-white/10 border-white/20 hover:bg-white/20"
+                className="gap-2 backdrop-blur-sm border-border hover:bg-accent"
               >
                 <Icon name="Calendar" className="h-4 w-4" />
                 Last 30 Days
@@ -107,7 +114,7 @@ export default function AnalyticsPage() {
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-2 backdrop-blur-sm bg-white/10 border-white/20 hover:bg-white/20"
+                className="gap-2 backdrop-blur-sm border-border hover:bg-accent"
               >
                 <Icon name="Download" className="h-4 w-4" />
                 Export

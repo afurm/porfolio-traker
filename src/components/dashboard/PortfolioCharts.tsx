@@ -135,8 +135,8 @@ export function PortfolioCharts({ assets, priceHistory }: PortfolioChartsProps) 
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="glass-card rounded-lg border p-2 shadow-lg">
-                          <p className="text-sm font-medium">
+                        <div className="glass-card rounded-lg border border-border p-2 shadow-lg">
+                          <p className="text-sm font-medium text-foreground">
                             {formatCurrency(payload[0].value as number)}
                           </p>
                           <p className="text-xs text-muted-foreground">
@@ -193,13 +193,17 @@ export function PortfolioCharts({ assets, priceHistory }: PortfolioChartsProps) 
                           variants={scaleIn}
                           initial="initial"
                           animate="animate"
-                          className="glass-card rounded-lg border p-3 shadow-lg"
+                          className="glass-card rounded-lg border border-border p-3 shadow-lg"
                         >
-                          <p className="font-medium">{data.name}</p>
+                          <p className="font-medium text-foreground">{data.name}</p>
                           <p className="text-sm text-muted-foreground">{data.symbol}</p>
                           <div className="mt-2 space-y-1">
-                            <p className="text-sm">Value: {formatCurrency(data.value)}</p>
-                            <p className="text-sm">Share: {data.percentage.toFixed(2)}%</p>
+                            <p className="text-sm text-foreground">
+                              Value: {formatCurrency(data.value)}
+                            </p>
+                            <p className="text-sm text-foreground">
+                              Share: {data.percentage.toFixed(2)}%
+                            </p>
                             <p
                               className={`text-sm ${data.change >= 0 ? 'text-green-500' : 'text-red-500'}`}
                             >

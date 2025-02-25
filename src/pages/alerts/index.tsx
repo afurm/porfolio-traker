@@ -40,7 +40,7 @@ export default function AlertsPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#0d1117]">
+    <div className="relative min-h-screen bg-background">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 translate-y-1/2 rounded-full bg-red-500/10 blur-3xl" />
@@ -61,10 +61,12 @@ export default function AlertsPage() {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-purple-500">
+          <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-purple-500">
             Price Alerts
           </h1>
-          <p className="text-gray-400 mt-2">Set and manage your cryptocurrency price alerts</p>
+          <p className="text-muted-foreground mt-2">
+            Set and manage your cryptocurrency price alerts
+          </p>
         </motion.div>
 
         {/* Main Content */}
@@ -79,7 +81,7 @@ export default function AlertsPage() {
             <motion.div
               whileHover={{ transform: 'translateZ(10px)' }}
               transition={{ type: 'spring', stiffness: 200 }}
-              className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl p-4"
+              className="relative overflow-hidden rounded-xl backdrop-blur-md bg-background/30 border border-border shadow-lg p-4"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-purple-500/10 to-blue-500/10" />
               <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
@@ -91,11 +93,7 @@ export default function AlertsPage() {
                       variant={activeTab === tab.id ? 'default' : 'ghost'}
                       size="sm"
                       onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                      className={`gap-2 ${
-                        activeTab === tab.id
-                          ? 'bg-white/10 text-white'
-                          : 'text-white/70 hover:text-white hover:bg-white/10'
-                      }`}
+                      className="gap-2"
                     >
                       {tab.label}
                     </Button>
@@ -105,7 +103,7 @@ export default function AlertsPage() {
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 400 }}
                 >
-                  <Button className="gap-2 bg-gradient-to-r from-red-500 to-purple-500 text-white border-none hover:from-red-600 hover:to-purple-600">
+                  <Button className="gap-2 bg-gradient-to-r from-red-500 to-purple-500 text-primary-foreground border-none hover:from-red-600 hover:to-purple-600">
                     <Icon name="Plus" className="h-4 w-4" />
                     New Alert
                   </Button>
@@ -116,7 +114,7 @@ export default function AlertsPage() {
             {/* Alerts List */}
             <motion.div
               variants={fadeIn}
-              className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl"
+              className="relative overflow-hidden rounded-xl backdrop-blur-md bg-background/30 border border-border shadow-lg"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-purple-500/5 to-blue-500/5" />
               <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
@@ -136,7 +134,7 @@ export default function AlertsPage() {
                         scale: 1.02,
                         transition: { type: 'spring', stiffness: 300 },
                       }}
-                      className="relative overflow-hidden rounded-lg bg-white/5 p-6 transition-colors hover:bg-white/10"
+                      className="relative overflow-hidden rounded-lg bg-background/50 p-6 transition-colors hover:bg-background/70"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
@@ -153,31 +151,23 @@ export default function AlertsPage() {
                             />
                           </div>
                           <div>
-                            <h3 className="font-medium text-white">
+                            <h3 className="font-medium text-foreground">
                               {alert.type === 'price' ? 'Price Alert' : 'Change Alert'}
                             </h3>
-                            <p className="text-sm text-white/60">
+                            <p className="text-sm text-muted-foreground">
                               {alert.condition === 'above' ? 'Above' : 'Below'} {alert.value}
                               {alert.type === 'change' ? '%' : ' USD'}
                             </p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-white/70 hover:text-white hover:bg-white/10"
-                          >
+                          <Button variant="ghost" size="icon" className="h-8 w-8">
                             <Icon name="Edit" className="h-4 w-4" />
                           </Button>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-white/70 hover:text-white hover:bg-white/10"
-                          >
+                          <Button variant="ghost" size="icon" className="h-8 w-8">
                             <Icon name="Trash2" className="h-4 w-4" />
                           </Button>
-                          <div className="h-8 w-px bg-white/10" />
+                          <div className="h-8 w-px bg-border" />
                           <Button
                             variant="ghost"
                             size="sm"
@@ -200,7 +190,7 @@ export default function AlertsPage() {
                 </motion.div>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
             </motion.div>
           </div>
         </motion.div>

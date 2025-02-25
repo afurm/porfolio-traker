@@ -33,7 +33,7 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
       variants={staggerContainer}
       initial="initial"
       animate="animate"
-      className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl"
+      className="relative overflow-hidden rounded-xl backdrop-blur-md bg-card/50 border border-border shadow-lg"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5" />
       <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
@@ -41,14 +41,14 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
       <div className="relative p-6">
         <Table>
           <TableHeader>
-            <TableRow className="border-b-white/10">
-              <TableHead className="text-white/70">Date</TableHead>
-              <TableHead className="text-white/70">Type</TableHead>
-              <TableHead className="text-white/70">Asset</TableHead>
-              <TableHead className="text-right text-white/70">Amount</TableHead>
-              <TableHead className="text-right text-white/70">Price</TableHead>
-              <TableHead className="text-right text-white/70">Total</TableHead>
-              <TableHead className="text-right text-white/70">Status</TableHead>
+            <TableRow className="border-b-border">
+              <TableHead className="text-muted-foreground">Date</TableHead>
+              <TableHead className="text-muted-foreground">Type</TableHead>
+              <TableHead className="text-muted-foreground">Asset</TableHead>
+              <TableHead className="text-right text-muted-foreground">Amount</TableHead>
+              <TableHead className="text-right text-muted-foreground">Price</TableHead>
+              <TableHead className="text-right text-muted-foreground">Total</TableHead>
+              <TableHead className="text-right text-muted-foreground">Status</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -56,9 +56,9 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
               <motion.tr
                 key={transaction.id}
                 variants={listItem}
-                className="border-b border-white/5 transition-colors hover:bg-white/5"
+                className="border-b border-border/50 transition-colors hover:bg-accent/50"
               >
-                <TableCell className="text-sm text-white/80">
+                <TableCell className="text-sm text-foreground/80">
                   {new Date(transaction.date).toLocaleDateString()}
                 </TableCell>
                 <TableCell>
@@ -74,14 +74,14 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
                     {transaction.type.toUpperCase()}
                   </span>
                 </TableCell>
-                <TableCell className="text-sm text-white/80">{transaction.asset}</TableCell>
-                <TableCell className="text-right text-sm text-white/80">
+                <TableCell className="text-sm text-foreground/80">{transaction.asset}</TableCell>
+                <TableCell className="text-right text-sm text-foreground/80">
                   {transaction.amount.toFixed(8)}
                 </TableCell>
-                <TableCell className="text-right text-sm text-white/80">
+                <TableCell className="text-right text-sm text-foreground/80">
                   {formatCurrency(transaction.price)}
                 </TableCell>
-                <TableCell className="text-right text-sm text-white/80">
+                <TableCell className="text-right text-sm text-foreground/80">
                   {formatCurrency(transaction.total)}
                 </TableCell>
                 <TableCell className="text-right">
@@ -103,7 +103,7 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
         </Table>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
     </motion.div>
   );
 }

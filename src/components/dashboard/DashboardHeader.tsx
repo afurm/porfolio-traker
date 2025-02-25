@@ -65,21 +65,21 @@ export function DashboardHeader({
             }}
           >
             <Card
-              className={`relative overflow-hidden backdrop-blur-md bg-gradient-to-br ${stat.gradient} border-white/10 shadow-2xl`}
+              className={`relative overflow-hidden backdrop-blur-md bg-gradient-to-br ${stat.gradient} border-border shadow-lg`}
             >
               <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,white,transparent)]" />
               <div className="relative p-6 space-y-2">
-                <div className="flex items-center gap-2 text-white/80">
+                <div className="flex items-center gap-2 text-foreground/80">
                   <Icon name={stat.icon} className="h-5 w-5" />
                   <span className="text-sm font-medium">{stat.title}</span>
                 </div>
-                <div className={`text-2xl font-bold ${stat.color || 'text-white'}`}>
+                <div className={`text-2xl font-bold ${stat.color || 'text-foreground'}`}>
                   {stat.value}
                 </div>
                 {stat.percentage && (
                   <div className={`text-sm ${stat.color}`}>{stat.percentage}</div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
               </div>
             </Card>
           </motion.div>
