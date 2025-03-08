@@ -18,6 +18,10 @@ storybook-static
 # Misc
 .DS_Store
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # TypeScript
 *.tsbuildinfo
@@ -25,3 +29,42 @@ storybook-static
 # IDE files
 .vscode
 .idea
+*.swp
+*.swo
+
+# Rails API
+/api/log/*
+!/api/log/.keep
+/api/tmp/*
+!/api/tmp/.keep
+/api/tmp/pids/*
+!/api/tmp/pids/
+!/api/tmp/pids/.keep
+/api/tmp/cache/*
+!/api/tmp/cache/
+!/api/tmp/cache/.keep
+/api/tmp/sockets/*
+!/api/tmp/sockets/
+!/api/tmp/sockets/.keep
+/api/tmp/storage/*
+!/api/tmp/storage/
+!/api/tmp/storage/.keep
+/api/tmp/letter_opener/*
+/api/storage/*
+!/api/storage/.keep
+/api/config/master.key
+/api/.env
+/api/.env.local
+/api/.env.development.local
+/api/.env.test.local
+/api/.env.production.local
+/api/config/database.yml
+/api/coverage/
+/api/public/assets
+/api/public/packs
+/api/public/packs-test
+/api/node_modules/
+/api/yarn-error.log
+/api/db/*.sqlite3
+/api/db/*.sqlite3-*
+/api/tmp/local_secret.txt
