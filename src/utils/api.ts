@@ -9,6 +9,8 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  // Add a timeout to prevent hanging requests
+  timeout: 10000,
 });
 
 // Add a request interceptor to include JWT token in requests
@@ -30,6 +32,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.error('API request error:', error);
     return Promise.reject(error);
   }
 );
@@ -40,12 +43,21 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    // Network errors (API not available)
+    if (!error.response) {
+      console.error('Network error - API may be unavailable:', error.message);
+      // You could show a toast notification here
+      return Promise.reject(new Error('API server is unavailable. Please try again later.'));
+    }
+
     // Handle 401 Unauthorized errors
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       // Redirect to sign-in page if unauthorized
-      window.location.href = '/signin';
+      if (typeof window !== 'undefined') {
+        window.location.href = '/signin';
+      }
       return Promise.reject(error);
     }
 

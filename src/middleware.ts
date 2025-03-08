@@ -14,16 +14,6 @@ const protectedPaths = [
   '/assets',
 ];
 
-// List of paths that are public
-const publicPaths = [
-  '/',
-  '/signin',
-  '/signup',
-  '/verify-email',
-  '/forgot-password',
-  '/reset-password',
-];
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 

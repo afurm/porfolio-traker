@@ -1,0 +1,40 @@
+# Ignore the Rails API directory
+/api
+
+# Ignore development files
+.env.local
+.env.development.local
+.env.test.local
+
+# Ignore git and cache directories
+.git
+.github
+.husky
+.swc
+
+# Ignore test files
+/test
+/tests
+/coverage
+/jest.config.js
+/jest.setup.js
+
+# Ignore logs
+/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore the README and other documentation
+/README.md
+/DEPLOYMENT.md
+/LICENSE
+/CONTRIBUTING.md
+
+# Ignore editor directories and files
+/.idea
+/.vscode
+*.swp
+*.swo
+.DS_Store 
