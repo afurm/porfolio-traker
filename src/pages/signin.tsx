@@ -5,7 +5,7 @@ import Head from 'next/head';
 import SignInForm from '@/components/auth/SignInForm';
 
 export default function SignIn() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const { callbackUrl } = router.query;
 

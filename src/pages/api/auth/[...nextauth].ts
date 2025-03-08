@@ -1,7 +1,6 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { JWT } from 'next-auth/jwt';
 import { userApi } from '@/utils/api';
 
 /**
@@ -28,9 +27,11 @@ export const authOptions: NextAuthOptions = {
         try {
           // If token is provided, use it directly (for email verification flow)
           if (credentials.token) {
+            console.log('Using token for authentication:', credentials.token);
             // Validate the token by making a request to the API
             try {
               const response = await userApi.validateToken(credentials.token);
+              console.log('Token validation response:', response);
               if (response.user) {
                 return {
                   id: response.user.id,
@@ -81,7 +82,7 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user, account }) {
       console.log('JWT callback - token:', token);
       console.log('JWT callback - user:', user);
 

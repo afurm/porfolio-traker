@@ -7,23 +7,29 @@ This is the Rails API backend for the Crypto Portfolio Tracker application.
 1. **Clone the repository**
 
 2. **Install dependencies**
+
    ```bash
    bundle install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.local.sample .env.local
    ```
+
    Then edit `.env.local` with your actual values.
 
 4. **Set up database configuration**
+
    ```bash
    cp config/database.yml.sample config/database.yml
    ```
+
    Then edit `config/database.yml` with your database credentials if needed.
 
 5. **Create and migrate the database**
+
    ```bash
    rails db:create
    rails db:migrate
