@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Icon, type IconName } from '@/components/ui/icon';
 import { MobileNav } from '@/components/layouts/MobileNav';
+import UserMenu from '@/components/UserMenu';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -58,6 +59,7 @@ export function Header() {
               >
                 <Icon name="Settings" className="h-4 w-4" />
               </Link>
+              <UserMenu />
               <button
                 className="flex items-center space-x-2 md:hidden"
                 onClick={() => setShowMobileMenu(true)}
