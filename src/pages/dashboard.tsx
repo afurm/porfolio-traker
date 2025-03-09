@@ -11,7 +11,7 @@ const Dashboard: NextPage = () => {
   return (
     <ProtectedPage>
       <Head>
-        <title>Dashboard - Crypto Portfolio Tracker</title>
+        <title>Dashboard - FolioFlux</title>
       </Head>
       <div className="space-y-6">
         <div className="flex items-center justify-between">

@@ -25,7 +25,7 @@ export function Footer() {
             className="flex items-center space-x-2 text-sm font-medium hover:text-foreground/80"
           >
             <Icon name="Wallet" className="h-6 w-6" />
-            <span>Crypto Portfolio</span>
+            <span>FolioFlux</span>
           </Link>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} All rights reserved.

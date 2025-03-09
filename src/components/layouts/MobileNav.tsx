@@ -45,7 +45,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <div className="flex items-center justify-between">
                 <Link href="/" className="flex items-center space-x-2" onClick={onClose}>
                   <Icon name="Wallet" className="h-6 w-6 text-primary" />
-                  <span className="font-bold">Crypto Portfolio</span>
+                  <span className="font-bold">FolioFlux</span>
                 </Link>
                 <button onClick={onClose} className="text-foreground/60 hover:text-foreground">
                   <Icon name="X" className="h-6 w-6" />

@@ -6,7 +6,7 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Crypto Portfolio Tracker',
+  title: 'FolioFlux',
   description: 'Track and manage your crypto investments with AI-powered insights',
 };
 

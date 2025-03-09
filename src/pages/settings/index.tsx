@@ -28,7 +28,7 @@ export default function SettingsPage() {
           <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
             Settings
           </h1>
-          <p className="text-muted-foreground mt-2">Customize your Crypto Portfolio experience</p>
+          <p className="text-muted-foreground mt-2">Customize your FolioFlux experience</p>
         </motion.div>
       </motion.div>
     </div>

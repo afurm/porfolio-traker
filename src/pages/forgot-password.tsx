@@ -58,7 +58,7 @@ export default function ForgotPassword() {
   return (
     <>
       <Head>
-        <title>Forgot Password - Crypto Portfolio Tracker</title>
+        <title>Forgot Password - FolioFlux</title>
       </Head>
       <div className="flex min-h-screen items-center justify-center px-4 py-12">
         <Card className="w-full max-w-md">

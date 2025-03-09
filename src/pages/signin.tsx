@@ -26,7 +26,7 @@ export default function SignIn() {
   return (
     <>
       <Head>
-        <title>Sign In - Crypto Portfolio Tracker</title>
+        <title>Sign In - FolioFlux</title>
       </Head>
       <div className="flex min-h-screen items-center justify-center px-4 py-12">
         <SignInForm />
