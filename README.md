@@ -1,4 +1,4 @@
-# CryptoTracker - Advanced Cryptocurrency Portfolio Management
+# FolioFlux - Advanced Cryptocurrency Portfolio Management
 
 A modern, feature-rich cryptocurrency portfolio tracker built with Next.js, TypeScript, and cutting-edge web technologies. Track your crypto investments with real-time data, advanced analytics, and AI-powered insights.
 

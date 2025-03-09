@@ -41,7 +41,7 @@ export default function VerifyEmail() {
   return (
     <>
       <Head>
-        <title>Verify Email - Crypto Portfolio Tracker</title>
+        <title>Verify Email - FolioFlux</title>
       </Head>
       <div className="flex min-h-screen items-center justify-center px-4 py-12">
         <VerifyEmailForm />

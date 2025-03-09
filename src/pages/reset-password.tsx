@@ -152,7 +152,7 @@ export default function ResetPassword() {
   return (
     <>
       <Head>
-        <title>Reset Password - Crypto Portfolio Tracker</title>
+        <title>Reset Password - FolioFlux</title>
       </Head>
       <div className="flex min-h-screen items-center justify-center px-4 py-12">
         <Card className="w-full max-w-md">

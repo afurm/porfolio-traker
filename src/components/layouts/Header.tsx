@@ -26,7 +26,7 @@ export function Header() {
         <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Icon name="Wallet" className="h-6 w-6 text-primary" />
-            <span className="hidden font-bold sm:inline-block">Crypto Portfolio</span>
+            <span className="hidden font-bold sm:inline-block">FolioFlux</span>
           </Link>
 
           <div className="flex items-center space-x-4">

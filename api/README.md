@@ -1,6 +1,6 @@
-# Crypto Portfolio Tracker API
+# FolioFlux API
 
-This is the Rails API backend for the Crypto Portfolio Tracker application.
+This is the Rails API backend for the FolioFlux application.
 
 ## Setup
 

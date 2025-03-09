@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <QueryProvider>
         <Head>
-          <title>Crypto Portfolio Tracker</title>
+          <title>FolioFlux</title>
           <meta
             name="description"
             content="Track and manage your crypto investments with AI-powered insights"

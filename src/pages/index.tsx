@@ -298,7 +298,7 @@ export default function Home() {
               whileHover={{ rotateX: 10, scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              Master Your Crypto Portfolio with AI-Powered Insights
+              Master Your Crypto Portfolio with FolioFlux AI-Powered Insights
             </motion.h1>
             <p className="text-xl text-muted-foreground mb-8">
               Advanced portfolio tracking, real-time analytics, and AI-powered insights to optimize
@@ -310,18 +310,8 @@ export default function Home() {
                 className="glass-card bg-gradient-to-r from-blue-500 to-purple-500 text-foreground shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
               >
                 <Link href="/portfolio" className="flex items-center gap-2">
-                  Start Trading Now
+                  Your Portfolio
                   <Icon name="ArrowRight" className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="glass-card border-border hover:bg-background/5 transform hover:scale-105"
-              >
-                <Link href="/features" className="flex items-center gap-2">
-                  Explore Features
-                  <Icon name="Info" className="h-5 w-5" />
                 </Link>
               </Button>
             </div>

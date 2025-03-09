@@ -25,7 +25,7 @@ export default function SignUp() {
   return (
     <>
       <Head>
-        <title>Sign Up - Crypto Portfolio Tracker</title>
+        <title>Sign Up - FolioFlux</title>
       </Head>
       <div className="flex min-h-screen items-center justify-center px-4 py-12">
         <SignUpForm />
