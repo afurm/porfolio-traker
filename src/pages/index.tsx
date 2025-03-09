@@ -331,8 +331,9 @@ export default function Home() {
                     <div className="flex items-center justify-between">
                       <span className="text-2xl font-bold">{stat.value}</span>
                       <span
-                        className={`text-sm flex items-center gap-1 ${stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                          }`}
+                        className={`text-sm flex items-center gap-1 ${
+                          stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                        }`}
                       >
                         <Icon
                           name={stat.trend === 'up' ? 'TrendingUp' : 'TrendingDown'}
