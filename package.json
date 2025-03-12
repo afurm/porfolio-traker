@@ -16,11 +16,16 @@
     "chromatic": "npx chromatic --project-token=chpt_454ef28ba6d3803"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.4",
     "@auth/core": "^0.34.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.2",
     "@prisma/client": "^6.4.1",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-toast": "^1.2.6",
     "@react-spring/web": "^9.7.5",
     "@react-three/drei": "^9.92.7",
     "@react-three/fiber": "^8.15.12",
@@ -52,7 +57,7 @@
     "react-router-dom": "^7.2.0",
     "recharts": "^2.12.7",
     "sequelize": "^6.37.6",
-    "tailwind-merge": "^3.0.1",
+    "tailwind-merge": "^3.0.2",
     "three": "^0.157.0",
     "zod": "^3.24.2",
     "zustand": "^5.0.3"

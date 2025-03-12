@@ -1,58 +1,64 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useQuery } from '@apollo/client';
 import { TransactionFilters } from '@/components/transactions/TransactionFilters';
 import { TransactionStats } from '@/components/transactions/TransactionStats';
 import { TransactionTable } from '@/components/transactions/TransactionTable';
+import { TransactionForm } from '@/components/transactions/TransactionForm';
+import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
+import { GET_USER_TRANSACTIONS } from '@/graphql/transactions';
 import { fadeIn } from '@/animations/framer';
+
+interface Transaction {
+  id: string;
+  date: string;
+  transactionType: string;
+  asset: string;
+  amount: number;
+  price: number;
+  totalValue: number;
+  status: string;
+}
 
 interface FilterOptions {
   startDate?: string;
   endDate?: string;
-  type?: 'buy' | 'sell';
+  transactionType?: string;
   asset?: string;
-  minAmount?: number;
-  maxAmount?: number;
 }
 
-// Mock data - replace with real data from your API
-const mockTransactions = [
-  {
-    id: '1',
-    date: '2024-03-20',
-    type: 'buy' as const,
-    asset: 'BTC',
-    amount: 0.5,
-    price: 65000,
-    total: 32500,
-    status: 'completed' as const,
-  },
-  {
-    id: '2',
-    date: '2024-03-19',
-    type: 'sell' as const,
-    asset: 'ETH',
-    amount: 2.5,
-    price: 3500,
-    total: 8750,
-    status: 'completed' as const,
-  },
-];
-
-const mockStats = {
-  totalTransactions: 150,
-  totalVolume: 1250000,
-  buyVolume: 750000,
-  sellVolume: 500000,
-  averageTransactionSize: 8333.33,
-};
-
 export default function TransactionsPage() {
-  const [transactions] = useState(mockTransactions);
+  const [filters, setFilters] = useState<FilterOptions>({});
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | undefined>(
+    undefined
+  );
 
-  const handleFilterChange = (filters: FilterOptions) => {
-    // Implement filter logic here
-    console.log('Filters changed:', filters);
+  const { loading, error, data, refetch } = useQuery(GET_USER_TRANSACTIONS, {
+    variables: filters,
+    fetchPolicy: 'network-only',
+  });
+
+  const handleFilterChange = (newFilters: FilterOptions) => {
+    setFilters(newFilters);
   };
+
+  const handleAddTransaction = () => {
+    setSelectedTransaction(undefined);
+    setIsFormOpen(true);
+  };
+
+  const handleEditTransaction = (transaction: Transaction) => {
+    setSelectedTransaction(transaction);
+    setIsFormOpen(true);
+  };
+
+  const handleFormSuccess = () => {
+    refetch();
+  };
+
+  const transactions = data?.userTransactions || [];
 
   return (
     <div className="relative min-h-screen bg-background">
@@ -69,19 +75,31 @@ export default function TransactionsPage() {
         animate="animate"
         className="relative container mx-auto py-8 px-4"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-8"
-        >
-          <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-            Transactions
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Track and analyze your cryptocurrency transactions
-          </p>
-        </motion.div>
+        <div className="flex justify-between items-center mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h1 className="text-4xl font-bold text-foreground bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+              Transactions
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Track and analyze your cryptocurrency transactions
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Button onClick={handleAddTransaction} className="gap-2">
+              <Icon name="Plus" className="h-4 w-4" />
+              Add Transaction
+            </Button>
+          </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -101,23 +119,24 @@ export default function TransactionsPage() {
               whileHover={{ transform: 'translateZ(10px)' }}
               transition={{ type: 'spring', stiffness: 200 }}
             >
-              <TransactionStats
-                totalTransactions={mockStats.totalTransactions}
-                totalVolume={mockStats.totalVolume}
-                buyVolume={mockStats.buyVolume}
-                sellVolume={mockStats.sellVolume}
-                averageTransactionSize={mockStats.averageTransactionSize}
-              />
+              <TransactionStats transactions={transactions} />
             </motion.div>
 
             <motion.div
               whileHover={{ transform: 'translateZ(10px)' }}
               transition={{ type: 'spring', stiffness: 200 }}
             >
-              <TransactionTable transactions={transactions} />
+              <TransactionTable filters={filters} onEdit={handleEditTransaction} />
             </motion.div>
           </div>
         </motion.div>
+
+        <TransactionForm
+          isOpen={isFormOpen}
+          onClose={() => setIsFormOpen(false)}
+          onSuccess={handleFormSuccess}
+          transaction={selectedTransaction}
+        />
       </motion.div>
     </div>
   );

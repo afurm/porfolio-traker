@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,10 +8,8 @@ import { fadeIn } from '@/animations/framer';
 interface FilterOptions {
   startDate?: string;
   endDate?: string;
-  type?: 'buy' | 'sell';
+  transactionType?: string;
   asset?: string;
-  minAmount?: number;
-  maxAmount?: number;
 }
 
 interface TransactionFiltersProps {
@@ -19,6 +17,19 @@ interface TransactionFiltersProps {
 }
 
 export function TransactionFilters({ onFilterChange }: TransactionFiltersProps) {
+  const [filters, setFilters] = useState<FilterOptions>({});
+
+  const handleFilterChange = (newFilters: Partial<FilterOptions>) => {
+    const updatedFilters = { ...filters, ...newFilters };
+    setFilters(updatedFilters);
+    onFilterChange(updatedFilters);
+  };
+
+  const clearFilters = () => {
+    setFilters({});
+    onFilterChange({});
+  };
+
   return (
     <motion.div
       variants={fadeIn}
@@ -35,14 +46,16 @@ export function TransactionFilters({ onFilterChange }: TransactionFiltersProps) 
           <div className="flex items-center gap-2">
             <Input
               type="date"
+              value={filters.startDate || ''}
               className="bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
-              onChange={(e) => onFilterChange({ startDate: e.target.value })}
+              onChange={(e) => handleFilterChange({ startDate: e.target.value || undefined })}
             />
             <span className="text-muted-foreground">to</span>
             <Input
               type="date"
+              value={filters.endDate || ''}
               className="bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
-              onChange={(e) => onFilterChange({ endDate: e.target.value })}
+              onChange={(e) => handleFilterChange({ endDate: e.target.value || undefined })}
             />
           </div>
         </div>
@@ -51,19 +64,35 @@ export function TransactionFilters({ onFilterChange }: TransactionFiltersProps) 
           <label className="text-sm font-medium text-foreground/80">Type</label>
           <div className="flex gap-2">
             <Button
-              variant="outline"
+              variant={filters.transactionType === 'buy' ? 'default' : 'outline'}
               size="sm"
-              className="flex-1 bg-background/50 border-border text-foreground hover:bg-green-500/20 hover:text-green-400 transition-colors"
-              onClick={() => onFilterChange({ type: 'buy' })}
+              className={`flex-1 ${
+                filters.transactionType === 'buy'
+                  ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                  : 'bg-background/50 border-border text-foreground hover:bg-green-500/20 hover:text-green-400'
+              } transition-colors`}
+              onClick={() =>
+                handleFilterChange({
+                  transactionType: filters.transactionType === 'buy' ? undefined : 'buy',
+                })
+              }
             >
               <Icon name="ArrowDownRight" className="mr-1 h-4 w-4" />
               Buy
             </Button>
             <Button
-              variant="outline"
+              variant={filters.transactionType === 'sell' ? 'default' : 'outline'}
               size="sm"
-              className="flex-1 bg-background/50 border-border text-foreground hover:bg-red-500/20 hover:text-red-400 transition-colors"
-              onClick={() => onFilterChange({ type: 'sell' })}
+              className={`flex-1 ${
+                filters.transactionType === 'sell'
+                  ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+                  : 'bg-background/50 border-border text-foreground hover:bg-red-500/20 hover:text-red-400'
+              } transition-colors`}
+              onClick={() =>
+                handleFilterChange({
+                  transactionType: filters.transactionType === 'sell' ? undefined : 'sell',
+                })
+              }
             >
               <Icon name="ArrowUpRight" className="mr-1 h-4 w-4" />
               Sell
@@ -75,29 +104,22 @@ export function TransactionFilters({ onFilterChange }: TransactionFiltersProps) 
           <label className="text-sm font-medium text-foreground/80">Asset</label>
           <Input
             type="text"
+            value={filters.asset || ''}
             placeholder="Search assets..."
             className="bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
-            onChange={(e) => onFilterChange({ asset: e.target.value })}
+            onChange={(e) => handleFilterChange({ asset: e.target.value || undefined })}
           />
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground/80">Amount Range</label>
-          <div className="flex items-center gap-2">
-            <Input
-              type="number"
-              placeholder="Min"
-              className="bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
-              onChange={(e) => onFilterChange({ minAmount: parseFloat(e.target.value) })}
-            />
-            <span className="text-muted-foreground">to</span>
-            <Input
-              type="number"
-              placeholder="Max"
-              className="bg-background/50 border-border text-foreground placeholder-muted-foreground focus:border-blue-500/50 focus:ring-blue-500/25"
-              onChange={(e) => onFilterChange({ maxAmount: parseFloat(e.target.value) })}
-            />
-          </div>
+        <div className="flex items-end">
+          <Button
+            variant="outline"
+            className="w-full bg-background/50 border-border text-foreground"
+            onClick={clearFilters}
+          >
+            <Icon name="X" className="mr-2 h-4 w-4" />
+            Clear Filters
+          </Button>
         </div>
       </div>
 
