@@ -178,11 +178,7 @@ const plans = [
     name: 'Free',
     description: 'Perfect for getting started',
     price: '$0',
-    features: [
-      'Basic portfolio tracking',
-      'Limited price alerts',
-      'Email support',
-    ],
+    features: ['Basic portfolio tracking', 'Limited price alerts', 'Email support'],
     cta: 'Get Started',
     icon: 'Rocket',
   },
@@ -405,8 +401,9 @@ export default function Home({ marketData: initialMarketData }: { marketData: Ma
                     <div className="flex items-center justify-between">
                       <span className="text-2xl font-bold">{stat.value}</span>
                       <span
-                        className={`text-sm flex items-center gap-1 ${stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                          }`}
+                        className={`text-sm flex items-center gap-1 ${
+                          stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                        }`}
                       >
                         <Icon
                           name={stat.trend === 'up' ? 'TrendingUp' : 'TrendingDown'}
