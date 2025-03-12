@@ -1,50 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icon, type IconName } from '@/components/ui/icon';
 import { fadeIn, staggerContainer } from '@/animations/framer';
 import FeatureIcon from '@/components/3d/FeatureIcon';
 
-// Market stats data with more detailed information
-const marketStats = [
-  { label: 'Total Market Cap', value: '$2.1T', change: '+5.2%', trend: 'up' },
-  { label: '24h Volume', value: '$125B', change: '+3.8%', trend: 'up' },
-  { label: 'BTC Dominance', value: '45%', change: '-0.5%', trend: 'down' },
-  { label: 'Active Cryptocurrencies', value: '10,000+', change: '+2.1%', trend: 'up' },
-];
+// Define the types that were previously imported from the API file
+interface MarketStats {
+  totalMarketCap: string;
+  totalMarketCapChange: string;
+  totalVolume: string;
+  totalVolumeChange: string;
+  btcDominance: string;
+  btcDominanceChange: string;
+  activeCryptocurrencies: string;
+  activeCryptocurrenciesChange: string;
+}
 
-// Enhanced top cryptocurrencies data
-const topCryptos = [
-  {
-    name: 'Bitcoin',
-    symbol: 'BTC',
-    price: '$45,000',
-    change: '+2.5%',
-    volume: '$28B',
-    marketCap: '$850B',
-    sparkline: [39000, 41000, 43000, 42000, 45000],
-  },
-  {
-    name: 'Ethereum',
-    symbol: 'ETH',
-    price: '$3,200',
-    change: '+4.2%',
-    volume: '$15B',
-    marketCap: '$380B',
-    sparkline: [2800, 2900, 3100, 3000, 3200],
-  },
-  {
-    name: 'Solana',
-    symbol: 'SOL',
-    price: '$110',
-    change: '+6.8%',
-    volume: '$5B',
-    marketCap: '$45B',
-    sparkline: [90, 95, 100, 105, 110],
-  },
-];
+interface CryptoData {
+  name: string;
+  symbol: string;
+  price: string;
+  change: string;
+  volume: string;
+  marketCap: string;
+}
+
+interface MarketData {
+  marketStats: MarketStats;
+  topCryptos: CryptoData[];
+}
 
 // Detailed features with alternating layouts
 interface DetailedFeature {
@@ -264,7 +252,118 @@ const faqItems = [
   },
 ];
 
-export default function Home() {
+// Convert market stats from API to the format used in the component
+const formatMarketStats = (marketStats: MarketStats) => [
+  {
+    label: 'Total Market Cap',
+    value: marketStats.totalMarketCap,
+    change: marketStats.totalMarketCapChange,
+    trend: marketStats.totalMarketCapChange.startsWith('-') ? 'down' : 'up',
+  },
+  {
+    label: '24h Volume',
+    value: marketStats.totalVolume,
+    change: marketStats.totalVolumeChange,
+    trend: marketStats.totalVolumeChange.startsWith('-') ? 'down' : 'up',
+  },
+  {
+    label: 'BTC Dominance',
+    value: marketStats.btcDominance,
+    change: marketStats.btcDominanceChange,
+    trend: marketStats.btcDominanceChange.startsWith('-') ? 'down' : 'up',
+  },
+  {
+    label: 'Active Cryptocurrencies',
+    value: marketStats.activeCryptocurrencies,
+    change: marketStats.activeCryptocurrenciesChange,
+    trend: marketStats.activeCryptocurrenciesChange.startsWith('-') ? 'down' : 'up',
+  },
+];
+
+// Convert top cryptos from API to the format used in the component
+const formatTopCryptos = (topCryptos: CryptoData[]) =>
+  topCryptos.map((crypto) => ({
+    name: crypto.name,
+    symbol: crypto.symbol,
+    price: crypto.price,
+    change: crypto.change,
+    volume: crypto.volume,
+    marketCap: crypto.marketCap,
+    sparkline: [0, 0, 0, 0, 0], // Placeholder for sparkline data
+  }));
+
+export default function Home({ marketData: initialMarketData }: { marketData: MarketData }) {
+  // State to hold the market data
+  const [marketData, setMarketData] = useState<MarketData>(initialMarketData);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+
+  // Format the data for display
+  const formattedMarketStats = formatMarketStats(marketData.marketStats);
+  const formattedTopCryptos = formatTopCryptos(marketData.topCryptos);
+
+  // Function to refresh the data
+  const refreshData = async () => {
+    try {
+      setIsRefreshing(true);
+
+      // Fetch data directly from CoinGecko API
+      const globalRes = await fetch('https://api.coingecko.com/api/v3/global');
+      const globalData = await globalRes.json();
+
+      const topCoinsRes = await fetch(
+        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=3&page=1&sparkline=false&price_change_percentage=24h'
+      );
+      const topCoins = await topCoinsRes.json();
+
+      // Format market stats
+      const marketStats = {
+        totalMarketCap: `$${(globalData.data.total_market_cap.usd / 1e12).toFixed(1)}T`,
+        totalMarketCapChange: `${globalData.data.market_cap_change_percentage_24h_usd.toFixed(1)}%`,
+        totalVolume: `$${(globalData.data.total_volume.usd / 1e9).toFixed(0)}B`,
+        totalVolumeChange: '+3.8%', // This data might not be directly available from the API
+        btcDominance: `${globalData.data.market_cap_percentage.btc.toFixed(0)}%`,
+        btcDominanceChange: '-0.5%', // This data might not be directly available from the API
+        activeCryptocurrencies: `${globalData.data.active_cryptocurrencies}+`,
+        activeCryptocurrenciesChange: '+2.1%', // This data might not be directly available from the API
+      };
+
+      // Format top cryptocurrencies
+      const topCryptosData = topCoins.map((coin: any) => ({
+        name: coin.name,
+        symbol: coin.symbol.toUpperCase(),
+        price: `$${coin.current_price.toLocaleString()}`,
+        change: `${coin.price_change_percentage_24h.toFixed(1)}%`,
+        volume: `$${(coin.total_volume / 1e9).toFixed(1)}B`,
+        marketCap: `$${(coin.market_cap / 1e9).toFixed(0)}B`,
+      }));
+
+      // Update state with new data
+      setMarketData({
+        marketStats,
+        topCryptos: topCryptosData,
+      });
+      setLastUpdated(new Date());
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  // Set up interval to refresh data every 2 minutes
+  useEffect(() => {
+    const intervalId = setInterval(
+      () => {
+        refreshData();
+      },
+      2 * 60 * 1000
+    ); // 2 minutes in milliseconds
+
+    // Clean up interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
       {/* Enhanced animated background */}
@@ -319,7 +418,7 @@ export default function Home() {
 
           {/* Market Stats with enhanced animations */}
           <motion.div variants={fadeIn} className="grid md:grid-cols-4 gap-6 mb-16">
-            {marketStats.map((stat) => (
+            {formattedMarketStats.map((stat) => (
               <motion.div
                 key={stat.label}
                 whileHover={{ scale: 1.05, rotateY: 10 }}
@@ -354,12 +453,30 @@ export default function Home() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold">Top Cryptocurrencies</h2>
-                  <Button variant="outline" size="sm" className="glass-card">
-                    <Link href="/market">View All Markets</Link>
-                  </Button>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground">
+                      Last updated: {lastUpdated.toLocaleTimeString()}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="glass-card flex items-center gap-1"
+                      onClick={refreshData}
+                      disabled={isRefreshing}
+                    >
+                      <Icon
+                        name="RefreshCw"
+                        className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`}
+                      />
+                      {isRefreshing ? 'Refreshing...' : 'Refresh'}
+                    </Button>
+                    <Button variant="outline" size="sm" className="glass-card">
+                      <Link href="/market">View All Markets</Link>
+                    </Button>
+                  </div>
                 </div>
                 <div className="grid gap-4">
-                  {topCryptos.map((crypto) => (
+                  {formattedTopCryptos.map((crypto) => (
                     <motion.div
                       key={crypto.symbol}
                       whileHover={{ scale: 1.02 }}
@@ -644,3 +761,98 @@ export default function Home() {
     </div>
   );
 }
+
+// Add getStaticProps to fetch data with ISR
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    // Fetch data from our API endpoint directly
+    const res = await fetch('https://api.coingecko.com/api/v3/global');
+    const globalData = await res.json();
+
+    const topCoinsRes = await fetch(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=3&page=1&sparkline=false&price_change_percentage=24h'
+    );
+    const topCoins = await topCoinsRes.json();
+
+    // Format market stats
+    const marketStats = {
+      totalMarketCap: `$${(globalData.data.total_market_cap.usd / 1e12).toFixed(1)}T`,
+      totalMarketCapChange: `${globalData.data.market_cap_change_percentage_24h_usd.toFixed(1)}%`,
+      totalVolume: `$${(globalData.data.total_volume.usd / 1e9).toFixed(0)}B`,
+      totalVolumeChange: '+3.8%', // This data might not be directly available from the API
+      btcDominance: `${globalData.data.market_cap_percentage.btc.toFixed(0)}%`,
+      btcDominanceChange: '-0.5%', // This data might not be directly available from the API
+      activeCryptocurrencies: `${globalData.data.active_cryptocurrencies}+`,
+      activeCryptocurrenciesChange: '+2.1%', // This data might not be directly available from the API
+    };
+
+    // Format top cryptocurrencies
+    const topCryptosData = topCoins.map((coin: any) => ({
+      name: coin.name,
+      symbol: coin.symbol.toUpperCase(),
+      price: `$${coin.current_price.toLocaleString()}`,
+      change: `${coin.price_change_percentage_24h.toFixed(1)}%`,
+      volume: `$${(coin.total_volume / 1e9).toFixed(1)}B`,
+      marketCap: `$${(coin.market_cap / 1e9).toFixed(0)}B`,
+    }));
+
+    return {
+      props: {
+        marketData: {
+          marketStats,
+          topCryptos: topCryptosData,
+        },
+      },
+      // Revalidate every 2 minutes (120 seconds)
+      revalidate: 120,
+    };
+  } catch (error) {
+    console.error('Error fetching market data:', error);
+
+    // Return fallback data in case of error
+    return {
+      props: {
+        marketData: {
+          marketStats: {
+            totalMarketCap: '$2.1T',
+            totalMarketCapChange: '+5.2%',
+            totalVolume: '$125B',
+            totalVolumeChange: '+3.8%',
+            btcDominance: '45%',
+            btcDominanceChange: '-0.5%',
+            activeCryptocurrencies: '10,000+',
+            activeCryptocurrenciesChange: '+2.1%',
+          },
+          topCryptos: [
+            {
+              name: 'Bitcoin',
+              symbol: 'BTC',
+              price: '$45,000',
+              change: '+2.5%',
+              volume: '$28B',
+              marketCap: '$850B',
+            },
+            {
+              name: 'Ethereum',
+              symbol: 'ETH',
+              price: '$3,200',
+              change: '+4.2%',
+              volume: '$15B',
+              marketCap: '$380B',
+            },
+            {
+              name: 'Solana',
+              symbol: 'SOL',
+              price: '$110',
+              change: '+6.8%',
+              volume: '$5B',
+              marketCap: '$45B',
+            },
+          ],
+        },
+      },
+      // Still revalidate even on error
+      revalidate: 120,
+    };
+  }
+};
