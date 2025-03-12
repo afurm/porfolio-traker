@@ -10,7 +10,6 @@ const navItems = [
   { href: '/', label: 'Dashboard', icon: 'LayoutDashboard' as IconName },
   { href: '/portfolio', label: 'Portfolio', icon: 'PieChart' as IconName },
   { href: '/transactions', label: 'Transactions', icon: 'ArrowLeftRight' as IconName },
-  { href: '/market', label: 'Market', icon: 'LineChart' as IconName },
   { href: '/analytics', label: 'Analytics', icon: 'BarChart2' as IconName },
   { href: '/alerts', label: 'Alerts', icon: 'Bell' as IconName },
 ];

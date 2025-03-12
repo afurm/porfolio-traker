@@ -86,23 +86,6 @@ const detailedFeatures: DetailedFeature[] = [
     ],
   },
   {
-    title: 'Market Intelligence',
-    description: 'Stay ahead with real-time market data, trends, and AI-powered insights.',
-    icon: 'LineChart',
-    cta: 'Explore Markets',
-    link: '/market',
-    image: '/images/market-insights.png',
-    color: '#22c55e',
-    gradient: 'from-green-500/20 to-green-600/5',
-    iconType: 'market',
-    benefits: [
-      'Real-time market data',
-      'Trend analysis',
-      'Price alerts',
-      'Market sentiment analysis',
-    ],
-  },
-  {
     title: 'AI-Powered Analytics',
     icon: 'Brain',
     description: 'Make informed decisions with advanced analytics and AI-driven insights.',
@@ -161,13 +144,6 @@ const features = [
     gradient: 'from-purple-500 to-purple-600',
     benefits: ['Custom thresholds', 'ML predictions', 'Multi-channel alerts'],
   },
-  {
-    title: 'Market Analysis',
-    description: 'Professional-grade analysis tools with social sentiment tracking',
-    icon: 'BarChart2',
-    gradient: 'from-green-500 to-green-600',
-    benefits: ['Technical indicators', 'Social sentiment', 'News analysis'],
-  },
 ];
 
 // Testimonials data
@@ -205,7 +181,6 @@ const plans = [
     features: [
       'Basic portfolio tracking',
       'Limited price alerts',
-      'Standard market data',
       'Email support',
     ],
     cta: 'Get Started',
@@ -430,9 +405,8 @@ export default function Home({ marketData: initialMarketData }: { marketData: Ma
                     <div className="flex items-center justify-between">
                       <span className="text-2xl font-bold">{stat.value}</span>
                       <span
-                        className={`text-sm flex items-center gap-1 ${
-                          stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                        }`}
+                        className={`text-sm flex items-center gap-1 ${stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                          }`}
                       >
                         <Icon
                           name={stat.trend === 'up' ? 'TrendingUp' : 'TrendingDown'}
@@ -469,9 +443,6 @@ export default function Home({ marketData: initialMarketData }: { marketData: Ma
                         className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`}
                       />
                       {isRefreshing ? 'Refreshing...' : 'Refresh'}
-                    </Button>
-                    <Button variant="outline" size="sm" className="glass-card">
-                      <Link href="/market">View All Markets</Link>
                     </Button>
                   </div>
                 </div>
