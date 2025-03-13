@@ -10,7 +10,7 @@ export const formatCurrency = (value: number, currency: string = 'USD'): string 
 // Format cryptocurrency amounts with appropriate decimal places
 export const formatCryptoAmount = (value: number): string => {
   // For zero values, just return "0"
-  if (value === 0) return "0";
+  if (value === 0) return '0';
 
   // For very small values (less than 0.00001), use scientific notation
   if (value < 0.00001) return value.toExponential(4);
