@@ -25,8 +25,8 @@ interface Transaction {
   date: string;
   transactionType: string;
   asset: string;
-  amount: number;
-  price: number;
+  amount: number | string;
+  price: number | string;
   status: string;
 }
 
@@ -119,10 +119,23 @@ export function TransactionForm({ isOpen, onClose, onSuccess, transaction }: Tra
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'number' ? parseFloat(value) : value,
-    });
+
+    // Handle numeric fields (amount and price)
+    if (name === 'amount' || name === 'price') {
+      // Only allow valid decimal numbers
+      if (value === '' || /^[0-9]*[.]?[0-9]*$/.test(value)) {
+        setFormData({
+          ...formData,
+          [name]: value === '' ? 0 : value,
+        });
+      }
+    } else {
+      // Handle other fields normally
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSelectChange = (name: string, value: string) => {
@@ -139,8 +152,8 @@ export function TransactionForm({ isOpen, onClose, onSuccess, transaction }: Tra
       date: new Date(formData.date).toISOString(),
       transactionType: formData.transactionType,
       asset: formData.asset,
-      amount: formData.amount,
-      price: formData.price,
+      amount: parseFloat(formData.amount.toString()),
+      price: parseFloat(formData.price.toString()),
       status: formData.status,
     };
 
@@ -216,11 +229,11 @@ export function TransactionForm({ isOpen, onClose, onSuccess, transaction }: Tra
               <Input
                 id="amount"
                 name="amount"
-                type="number"
-                step="0.00000001"
-                min="0"
-                placeholder="0.00"
-                value={formData.amount}
+                type="text"
+                inputMode="decimal"
+                pattern="[0-9]*[.]?[0-9]*"
+                placeholder="0.00000000"
+                value={formData.amount === 0 ? '' : formData.amount.toString()}
                 onChange={handleChange}
                 required
               />
@@ -231,11 +244,11 @@ export function TransactionForm({ isOpen, onClose, onSuccess, transaction }: Tra
               <Input
                 id="price"
                 name="price"
-                type="number"
-                step="0.01"
-                min="0"
+                type="text"
+                inputMode="decimal"
+                pattern="[0-9]*[.]?[0-9]*"
                 placeholder="0.00"
-                value={formData.price}
+                value={formData.price === 0 ? '' : formData.price.toString()}
                 onChange={handleChange}
                 required
               />

@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Icon } from '@/components/ui/icon';
-import { formatCurrency } from '@/utils/formatCurrency';
+import { formatCurrency, formatCryptoAmount } from '@/utils/formatCurrency';
 import { staggerContainer, listItem } from '@/animations/framer';
 import { Button } from '@/components/ui/button';
 import { useQuery, useMutation } from '@apollo/client';
@@ -140,7 +140,7 @@ export function TransactionTable({ filters, onEdit }: TransactionTableProps) {
                   </TableCell>
                   <TableCell className="text-sm text-foreground/80">{transaction.asset}</TableCell>
                   <TableCell className="text-right text-sm text-foreground/80">
-                    {transaction.amount.toFixed(8)}
+                    {formatCryptoAmount(transaction.amount)}
                   </TableCell>
                   <TableCell className="text-right text-sm text-foreground/80">
                     {formatCurrency(transaction.price)}
