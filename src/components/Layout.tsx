@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '@/components/layouts/Header';
 import { Footer } from '@/components/layouts/Footer';
+import { Toaster } from '@/components/ui/toaster';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export default function Layout({ children }: LayoutProps) {
           <div className="container mx-auto py-6 px-4">{children}</div>
         </main>
         <Footer />
+        <Toaster />
       </div>
     </div>
   );

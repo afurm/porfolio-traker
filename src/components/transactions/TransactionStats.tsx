@@ -1,56 +1,87 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@/components/ui/icon';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { fadeIn } from '@/animations/framer';
 
-interface TransactionStatsProps {
-  totalTransactions: number;
-  totalVolume: number;
-  buyVolume: number;
-  sellVolume: number;
-  averageTransactionSize: number;
+interface Transaction {
+  id: string;
+  date: string;
+  transactionType: 'buy' | 'sell';
+  asset: string;
+  amount: number;
+  price: number;
+  totalValue: number;
+  status: string;
 }
 
-export function TransactionStats({
-  totalTransactions,
-  totalVolume,
-  buyVolume,
-  sellVolume,
-  averageTransactionSize,
-}: TransactionStatsProps) {
-  const stats = [
+interface TransactionStatsProps {
+  transactions: Transaction[];
+}
+
+export function TransactionStats({ transactions }: TransactionStatsProps) {
+  const stats = useMemo(() => {
+    const totalTransactions = transactions.length;
+
+    // Calculate volumes
+    let totalVolume = 0;
+    let buyVolume = 0;
+    let sellVolume = 0;
+
+    transactions.forEach((transaction) => {
+      const value = transaction.totalValue;
+      totalVolume += value;
+
+      if (transaction.transactionType === 'buy') {
+        buyVolume += value;
+      } else if (transaction.transactionType === 'sell') {
+        sellVolume += value;
+      }
+    });
+
+    const averageTransactionSize = totalTransactions > 0 ? totalVolume / totalTransactions : 0;
+
+    return {
+      totalTransactions,
+      totalVolume,
+      buyVolume,
+      sellVolume,
+      averageTransactionSize,
+    };
+  }, [transactions]);
+
+  const statItems = [
     {
       title: 'Total Transactions',
-      value: totalTransactions.toString(),
+      value: stats.totalTransactions.toString(),
       icon: 'ListOrdered',
       gradient: 'from-blue-500/20 to-blue-500/5',
       color: 'text-blue-500',
     },
     {
       title: 'Total Volume',
-      value: formatCurrency(totalVolume),
+      value: formatCurrency(stats.totalVolume),
       icon: 'LineChart',
       gradient: 'from-purple-500/20 to-purple-500/5',
       color: 'text-purple-500',
     },
     {
       title: 'Buy Volume',
-      value: formatCurrency(buyVolume),
+      value: formatCurrency(stats.buyVolume),
       icon: 'ArrowDownRight',
       gradient: 'from-green-500/20 to-green-500/5',
       color: 'text-green-500',
     },
     {
       title: 'Sell Volume',
-      value: formatCurrency(sellVolume),
+      value: formatCurrency(stats.sellVolume),
       icon: 'ArrowUpRight',
       gradient: 'from-red-500/20 to-red-500/5',
       color: 'text-red-500',
     },
     {
       title: 'Avg. Transaction',
-      value: formatCurrency(averageTransactionSize),
+      value: formatCurrency(stats.averageTransactionSize),
       icon: 'Calculator',
       gradient: 'from-yellow-500/20 to-yellow-500/5',
       color: 'text-yellow-500',
@@ -64,7 +95,7 @@ export function TransactionStats({
       animate="animate"
       className="grid gap-4 md:grid-cols-3 lg:grid-cols-5"
     >
-      {stats.map((stat, index) => (
+      {statItems.map((stat, index) => (
         <motion.div
           key={stat.title}
           initial={{ opacity: 0, y: 20 }}
@@ -80,7 +111,14 @@ export function TransactionStats({
           <div className="relative p-4 space-y-2">
             <div className="flex items-center gap-2 text-foreground/80">
               <Icon
-                name={stat.icon as 'LineChart' | 'ArrowDownRight' | 'ArrowUpRight' | 'Calculator'}
+                name={
+                  stat.icon as
+                    | 'LineChart'
+                    | 'ArrowDownRight'
+                    | 'ArrowUpRight'
+                    | 'Calculator'
+                    | 'ListOrdered'
+                }
                 className={`h-5 w-5 ${stat.color}`}
               />
               <span className="text-sm font-medium">{stat.title}</span>
