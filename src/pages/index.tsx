@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Icon, type IconName } from '@/components/ui/icon';
 import { fadeIn, staggerContainer } from '@/animations/framer';
 import FeatureIcon from '@/components/3d/FeatureIcon';
+import ComingSoonPage from './coming-soon';
 
 // Define the types that were previously imported from the API file
 interface MarketStats {
@@ -264,17 +265,16 @@ const formatTopCryptos = (topCryptos: CryptoData[]) =>
   }));
 
 export default function Home({ marketData: initialMarketData }: { marketData: MarketData }) {
-  // State to hold the market data
+  // Check which landing page to show based on environment variable
+  const landingPageType = process.env.NEXT_PUBLIC_LANDING_PAGE || 'main';
+
+  // Initialize all hooks unconditionally first
   const [marketData, setMarketData] = useState<MarketData>(initialMarketData);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  // Format the data for display
-  const formattedMarketStats = formatMarketStats(marketData.marketStats);
-  const formattedTopCryptos = formatTopCryptos(marketData.topCryptos);
-
   // Function to refresh the data
-  const refreshData = async () => {
+  const refreshData = useCallback(async () => {
     try {
       setIsRefreshing(true);
 
@@ -300,14 +300,23 @@ export default function Home({ marketData: initialMarketData }: { marketData: Ma
       };
 
       // Format top cryptocurrencies
-      const topCryptosData = topCoins.map((coin: any) => ({
-        name: coin.name,
-        symbol: coin.symbol.toUpperCase(),
-        price: `$${coin.current_price.toLocaleString()}`,
-        change: `${coin.price_change_percentage_24h.toFixed(1)}%`,
-        volume: `$${(coin.total_volume / 1e9).toFixed(1)}B`,
-        marketCap: `$${(coin.market_cap / 1e9).toFixed(0)}B`,
-      }));
+      const topCryptosData = topCoins.map(
+        (coin: {
+          name: string;
+          symbol: string;
+          current_price: number;
+          price_change_percentage_24h: number;
+          total_volume: number;
+          market_cap: number;
+        }) => ({
+          name: coin.name,
+          symbol: coin.symbol.toUpperCase(),
+          price: `$${coin.current_price.toLocaleString()}`,
+          change: `${coin.price_change_percentage_24h.toFixed(1)}%`,
+          volume: `$${(coin.total_volume / 1e9).toFixed(1)}B`,
+          marketCap: `$${(coin.market_cap / 1e9).toFixed(0)}B`,
+        })
+      );
 
       // Update state with new data
       setMarketData({
@@ -320,10 +329,13 @@ export default function Home({ marketData: initialMarketData }: { marketData: Ma
     } finally {
       setIsRefreshing(false);
     }
-  };
+  }, []); // Empty dependency array since it doesn't depend on any props or state
 
   // Set up interval to refresh data every 2 minutes
   useEffect(() => {
+    // Only run the effect if we're showing the main page
+    if (landingPageType === 'coming-soon') return;
+
     const intervalId = setInterval(
       () => {
         refreshData();
@@ -333,8 +345,18 @@ export default function Home({ marketData: initialMarketData }: { marketData: Ma
 
     // Clean up interval on component unmount
     return () => clearInterval(intervalId);
-  }, []);
+  }, [landingPageType, refreshData]); // Add refreshData as a dependency
 
+  // Format the data for display
+  const formattedMarketStats = formatMarketStats(marketData.marketStats);
+  const formattedTopCryptos = formatTopCryptos(marketData.topCryptos);
+
+  // If the landing page type is "coming-soon", render the ComingSoonPage
+  if (landingPageType === 'coming-soon') {
+    return <ComingSoonPage />;
+  }
+
+  // Otherwise, render the main landing page
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
       {/* Enhanced animated background */}
@@ -755,14 +777,23 @@ export const getStaticProps: GetStaticProps = async () => {
     };
 
     // Format top cryptocurrencies
-    const topCryptosData = topCoins.map((coin: any) => ({
-      name: coin.name,
-      symbol: coin.symbol.toUpperCase(),
-      price: `$${coin.current_price.toLocaleString()}`,
-      change: `${coin.price_change_percentage_24h.toFixed(1)}%`,
-      volume: `$${(coin.total_volume / 1e9).toFixed(1)}B`,
-      marketCap: `$${(coin.market_cap / 1e9).toFixed(0)}B`,
-    }));
+    const topCryptosData = topCoins.map(
+      (coin: {
+        name: string;
+        symbol: string;
+        current_price: number;
+        price_change_percentage_24h: number;
+        total_volume: number;
+        market_cap: number;
+      }) => ({
+        name: coin.name,
+        symbol: coin.symbol.toUpperCase(),
+        price: `$${coin.current_price.toLocaleString()}`,
+        change: `${coin.price_change_percentage_24h.toFixed(1)}%`,
+        volume: `$${(coin.total_volume / 1e9).toFixed(1)}B`,
+        marketCap: `$${(coin.market_cap / 1e9).toFixed(0)}B`,
+      })
+    );
 
     return {
       props: {
